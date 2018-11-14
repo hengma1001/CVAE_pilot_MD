@@ -2,7 +2,7 @@ import os, sys, h5py
 # from utils import CVAE 
 from keras.optimizers import RMSprop
 
-sys.path.append('/home/hm0/Research/molecules/molecules_git/build/lib')
+# sys.path.append('/home/hm0/Research/molecules/molecules_git/build/lib')
 from molecules.ml.unsupervised import VAE
 from molecules.ml.unsupervised import EncoderConvolution2D
 from molecules.ml.unsupervised import DecoderConvolution2D
@@ -25,7 +25,8 @@ def CVAE(input_shape, hyper_dim=3):
                latent_dim=hyper_dim,
                encoder=encoder,
                decoder=decoder,
-               optimizer=optimizer) 
+               optimizer=optimizer
+              ) 
     return cvae 
 
 def run_cvae(gpu_id, cm_file, hyper_dim=3): 
@@ -42,9 +43,9 @@ def run_cvae(gpu_id, cm_file, hyper_dim=3):
     os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
     os.environ["CUDA_VISIBLE_DEVICES"]=str(gpu_id) 
     
-    cvae = CVAE(input_shape, hyper_dim)
+    cvae = CVAE(input_shape, hyper_dim) 
     
-    callback = EmbeddingCallback(cm_data_train, cvae)
-    cvae.train(cm_data_train, validation_data=cm_data_val, batch_size=512, epochs=100, callbacks=[callback]) 
+#     callback = EmbeddingCallback(cm_data_train, cvae)
+    cvae.train(cm_data_train, validation_data=cm_data_val, batch_size=512, epochs=150) 
     
     return cvae 
