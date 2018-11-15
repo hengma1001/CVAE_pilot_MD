@@ -67,7 +67,7 @@ frame_number = lambda lists: sum([cm.shape[1] for cm in lists])
 
 frame_marker = 0 
 # change to 1e5 later, HM
-while frame_number(cm_data_lists) < 500: #100000: 
+while frame_number(cm_data_lists) < 100000: 
     for cm in cm_data_lists: 
         cm.refresh() 
     if frame_number(cm_data_lists) > frame_marker: 
