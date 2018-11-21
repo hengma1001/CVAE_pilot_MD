@@ -1,19 +1,14 @@
 from celery import Celery
 import simtk.unit as u 
-from run_cvae import run_cvae
-import sys, os
+from CVAE import run_cvae 
+from keras import backend as K
+import sys, os, shutil 
 import errno 
 
 # sys.path.append('/home/hm0/Research/molecules/molecules_git/build/lib')
 from molecules.sim.openmm_simulation import openmm_simulate_charmm_nvt
 
 app = Celery('tasks', broker='pyamqp://guest@localhost//', backend='rpc://') 
-
-
-
-@app.task
-def add(x, y):
-    return x + y
 
 @app.task
 def run_omm_with_celery(run_id, gpu_index, top_file, pdb_file, check_point=None): 
@@ -28,7 +23,8 @@ def run_omm_with_celery(run_id, gpu_index, top_file, pdb_file, check_point=None)
         pass
     
     os.chdir(iter_dir) 
-
+    shutil.copy2(top_file, iter_dir)
+    shutil.copy2(pdb_file, iter_dir)
     openmm_simulate_charmm_nvt(top_file, pdb_file, 
                                check_point = check_point, 
                                GPU_index=gpu_index, 
@@ -58,8 +54,10 @@ def run_cvae_with_celery(job_id, gpu_id, cvae_input, hyper_dim=3):
     
     model_weight = os.path.join(model_dir, 'cvae_weight.h5') 
     model_file = os.path.join(model_dir, 'cvae_model.h5')
-    cvae.save_weights(model_weight)
-    cvae.graph.save(model_file) 
     
+    cvae.model.save_weights(model_weight)
+    cvae.save(model_file) 
+    K.clear_session()
+    del cvae
     return model_weight, model_file
     

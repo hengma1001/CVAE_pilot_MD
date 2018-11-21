@@ -2,8 +2,14 @@ from tasks import run_omm_with_celery, run_cvae_with_celery
 from celery.bin import worker
 import numpy as np
 import threading, h5py
-import subprocess
+import subprocess, errno, os
+import warnings
+from sklearn.cluster import DBSCAN
+import MDAnalysis as mda
+from keras import backend as K
 from molecules.utils.matrix_op import triu_to_full
+
+from CVAE import CVAE
 
 def read_h5py_file(h5_file): 
     cm_h5 = h5py.File(h5_file, 'r', libver='latest', swmr=True)
@@ -143,7 +149,7 @@ class omm_job(object):
         if self.job: 
             self.job.revoke(terminate=True) 
         else: 
-            raise Exception('Attempt to stop a job, which is not running. \n')
+            warnings.warn('Attempt to stop a job, which is not running. \n')
         return self.gpu_id 
     
 
@@ -185,11 +191,54 @@ class cvae_job(object):
         pass
 #         if self.job.
     
-    def _stop(self): 
+    def stop(self): 
         """
         A function to stop the job and return the available gpu_id 
         """
         if self.job: 
             self.job.revoke(terminate=True) 
         else: 
-            raise Exception('Attempt to stop a job, which is not running. \n')
+            warnings.warn('Attempt to stop a job, which is not running. \n')
+
+def stamp_to_time(stamp): 
+    import datetime
+    datetime.datetime.fromtimestamp(stamp).strftime('%Y-%m-%d %H:%M:%S') 
+    
+def find_frame(traj_dict, frame_number=0): 
+    local_frame = frame_number
+    for key in traj_dict: 
+        if local_frame - int(traj_dict[key]) <= 0: 
+            dir_name = os.path.dirname(key) 
+            traj_file = os.path.join(dir_name, 'output.dcd')             
+            return traj_file, local_frame
+        else: 
+            local_frame -= int(traj_dict[key])
+    raise Exception('frame %d should not exceed the total number of frames, %d' % (frame_number, sum(np.array(traj_dict.values()).astype(int))))
+    
+    
+def write_pdb_frame(traj_file, pdb_file, frame_number, output_pdb): 
+    mda_traj = mda.Universe(pdb_file, traj_file)
+    mda_traj.trajectory[frame_number] 
+    PDB = mda.Writer(output_pdb)
+    PDB.write(mda_traj.atoms)     
+    return output_pdb
+
+def make_dir_p(path_name): 
+    try:
+        os.mkdir(path_name)
+    except OSError as exc:
+        if exc.errno != errno.EEXIST:
+            raise
+        pass
+
+def outliers_from_cvae(model_weight, cvae_input, hyper_dim=3, eps=0.35): 
+    os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
+    os.environ["CUDA_VISIBLE_DEVICES"]=str(0)  
+    cvae = CVAE(cvae_input.shape[1:], hyper_dim) 
+    cvae.model.load_weights(model_weight)
+    cm_predict = cvae.return_embeddings(cvae_input) 
+    db = DBSCAN(eps=0.35, min_samples=10).fit(cm_predict)
+    db_label = db.labels_
+    outlier_list = np.array(np.where(db_label == -1)) 
+    K.clear_session()
+    return outlier_list
