@@ -101,9 +101,10 @@ print('Running CVAE for hyper dimension:', hyper_dims)
 
 cvae_jobs = []
 for i in range(n_cvae): 
-    cvae_j = cvae_job(time.time(), i, cvae_input_file, hyper_dim=3) 
+    cvae_j = cvae_job(time.time(), i, cvae_input_file, hyper_dim=hyper_dims[i]) 
     stop_jobs = job_on_gpu(i, jobs) 
     stop_jobs.stop()  
+    print('Started CVAE for hyper dimension:', hyper_dims[i])
     cvae_j.start() 
     jobs.append(cvae_j) 
     cvae_jobs.append(cvae_j)
