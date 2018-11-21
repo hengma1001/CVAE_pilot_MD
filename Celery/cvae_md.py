@@ -23,7 +23,7 @@ top_file = os.path.abspath('../P27-all/C1B48/C1B48.top.gz')
 pdb_file = os.path.abspath('../P27-all/C1B48/C1B48.pdb.gz')
 
 # number of cvae jobs, from hyper_dim 3 
-n_cvae = 1 
+n_cvae = 2 
 
 work_dir = os.path.abspath('./')
 
@@ -105,6 +105,8 @@ for i in range(n_cvae):
     stop_jobs = job_on_gpu(i, jobs) 
     stop_jobs.stop()  
     print('Started CVAE for hyper dimension:', hyper_dims[i])
+    cvae_jobs.append(cvae_j)
+    time.sleep(2)
     cvae_j.start() 
     jobs.append(cvae_j) 
     cvae_jobs.append(cvae_j)
