@@ -6,7 +6,8 @@ print('============================================================== ')
 from glob import glob
 import numpy as np
 import sys, os, h5py, time, errno
-import GPUtil, subprocess32
+# import GPUtil, subprocess32
+import subprocess32
 from sklearn.cluster import DBSCAN
 
 from utils import start_rabbit, start_worker, start_flower_monitor, read_h5py_file, cm_to_cvae, job_on_gpu
@@ -15,9 +16,12 @@ from utils import omm_job, cvae_job
 
 from CVAE import CVAE
 
-
-GPU_ids = [gpu.id for gpu in GPUtil.getGPUs()] 
+n_gpus = 16
+GPU_ids = range(n_gpus) # [gpu.id for gpu in GPUtil.getGPUs()] 
 print('Available GPUs', GPU_ids) 
+
+os.environ["RABBITMQ_MNESIA_BASE"] = "~/.rabbit_base"
+os.environ["RABBITMQ_LOG_BASE"] = "~/.rabbit_base/"
 
 top_file = os.path.abspath('../P27-all/C1B48/C1B48.top.gz')
 pdb_file = os.path.abspath('../P27-all/C1B48/C1B48.pdb.gz')
@@ -38,7 +42,7 @@ time.sleep(5)
 
 celery_worker_log = os.path.join(log_dir, 'celery_worker_log.txt') 
 start_worker(celery_worker_log)
-start_flower_monitor() 
+# start_flower_monitor() 
 print('Waiting 10 seconds for the server to stablize.')
 time.sleep(10)
 
