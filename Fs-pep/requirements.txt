@@ -1,0 +1,12 @@
+h5py
+glob
+errno
+time
+GPUtil
+subprocess32
+numpy
+openmm=7.2.2
+celery=4.2.1
+rabbitmq-server=3.7.8
+tensorflow-gpu=1.8.0 
+Keras=2.2.0 
