@@ -11,7 +11,7 @@ import subprocess32
 from sklearn.cluster import DBSCAN
 
 from utils import start_rabbit, start_worker, start_flower_monitor, read_h5py_file, cm_to_cvae, job_on_gpu
-from utils import find_frame, write_pdb_frame, make_dir_p 
+from utils import find_frame, write_pdb_frame, make_dir_p, outliers_from_cvae 
 from utils import omm_job, cvae_job 
 
 from CVAE import CVAE
