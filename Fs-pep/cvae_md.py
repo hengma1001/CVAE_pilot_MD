@@ -11,12 +11,12 @@ import subprocess32
 from sklearn.cluster import DBSCAN
 
 from utils import start_rabbit, start_worker, start_flower_monitor, read_h5py_file, cm_to_cvae, job_on_gpu
-from utils import find_frame, write_pdb_frame, make_dir_p 
+from utils import find_frame, write_pdb_frame, make_dir_p, job_list, outliers_from_cvae
 from utils import omm_job, cvae_job 
 
 from CVAE import CVAE
 
-n_gpus = 16
+n_gpus = 2
 GPU_ids = range(n_gpus) # [gpu.id for gpu in GPUtil.getGPUs()] 
 print('Available GPUs', GPU_ids) 
 
@@ -50,7 +50,7 @@ time.sleep(10)
 
 
 # Starting MD simulation on all GPUs using OpenMM 
-jobs = []
+jobs = job_list() 
 for gpu_id in GPU_ids: 
     job = omm_job(job_id=int(time.time()), gpu_id=gpu_id, top_file=top_file, pdb_file=pdb_file)
     job.start() 
@@ -59,7 +59,7 @@ for gpu_id in GPU_ids:
     time.sleep(2)
     
 print('Waiting 5 mins for omm to write valid contact map .h5 files ')
-time.sleep(300) 
+time.sleep(120) 
 
 
 # Read all the contact map .h5 file in local dir
@@ -71,7 +71,7 @@ frame_number = lambda lists: sum([cm.shape[1] for cm in lists])
 
 frame_marker = 0 
 # number of training frames for cvae, change to 1e5 later, HM 
-while frame_number(cm_data_lists) < 100000: 
+while frame_number(cm_data_lists) < 20000: 
     for cm in cm_data_lists: 
         cm.refresh() 
     if frame_number(cm_data_lists) >= frame_marker: 
@@ -105,27 +105,27 @@ cvae_input_save.close()
 hyper_dims = np.array(range(n_cvae)) + 3
 print('Running CVAE for hyper dimension:', hyper_dims) 
 
-cvae_jobs = []
 for i in range(n_cvae): 
     cvae_j = cvae_job(time.time(), i, cvae_input_file, hyper_dim=hyper_dims[i]) 
-    stop_jobs = job_on_gpu(i, jobs) 
+    stop_jobs = jobs.get_job_from_gpu_id(i) 
     stop_jobs.stop()  
     print('Started CVAE for hyper dimension:', hyper_dims[i])
-    cvae_jobs.append(cvae_j)
     time.sleep(2)
     cvae_j.start() 
     jobs.append(cvae_j) 
-    cvae_jobs.append(cvae_j)
     time.sleep(2)
 
-while [cvae_j.job.status for cvae_j in cvae_jobs] != u'SUCCESS': 
-    time.sleep(10)
+while [cvae_j.job.status for cvae_j in jobs.get_cvae_jobs()] != [u'SUCCESS'] * len(jobs.get_cvae_jobs()): 
+    time.sleep(1)
 print('CVAE jobs done. ') 
+
+for cvae_j in jobs.get_cvae_jobs(): 
+    cvae_j.stop()
 
 # All the outliers from cvae
 outlier_list = []
-for cvae_j in cvae_jobs: 
-    outliers = outliers_from_cvae(cvae_j.job.result[0], cvae_input, hyper_dim=cvae_j.hyper_dim) 
+for cvae_j in jobs.get_cvae_jobs(): 
+    outliers = outliers_from_cvae(cvae_j.job.result[0], cvae_input, hyper_dim=cvae_j.hyper_dim, eps=0.35) 
     outlier_list.append(outliers) 
     
 outlier_list = np.unique(np.array(outlier_list).flatten()) 

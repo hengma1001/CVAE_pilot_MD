@@ -2,18 +2,18 @@ from celery import Celery
 import simtk.unit as u 
 from CVAE import run_cvae 
 from keras import backend as K
-import sys, os, shutil 
+import sys, os, shutil, gc 
 import errno 
 
 # sys.path.append('/home/hm0/Research/molecules/molecules_git/build/lib')
 from molecules.sim.openmm_simulation import openmm_simulate_charmm_nvt, openmm_simulate_amber_fs_pep
 
-app = Celery('tasks', broker='pyamqp://guest@localhost//', backend='rpc://') 
+app = Celery('tasks', broker='pyamqp://guest@localhost//', backend='rpc://', broker_pool_limit = None) 
 
 @app.task
 def run_omm_with_celery(run_id, gpu_index, top_file, pdb_file, check_point=None): 
     work_dir = os.getcwd()
-    iter_dir = os.path.join(work_dir, "omm_run%d" % int(run_id))
+    iter_dir = os.path.join(work_dir, "omm_run_%d" % int(run_id))
     
     try:
         os.mkdir(iter_dir)
@@ -38,7 +38,7 @@ def run_omm_with_celery(run_id, gpu_index, top_file, pdb_file, check_point=None)
 @app.task
 def run_omm_with_celery_fs_pep(run_id, gpu_index, pdb_file, check_point=None): 
     work_dir = os.getcwd()
-    iter_dir = os.path.join(work_dir, "omm_run%d" % int(run_id))
+    iter_dir = os.path.join(work_dir, "omm_run_%d" % int(run_id))
     
     try:
         os.mkdir(iter_dir)

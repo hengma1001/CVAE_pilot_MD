@@ -129,7 +129,8 @@ class omm_job(object):
         self.gpu_id = gpu_id
         self.top_file = top_file
         self.pdb_file = pdb_file 
-        self.check_point = None
+        self.check_point = None 
+        self.type = 'omm'
         self.job = None 
         
     def start(self): 
@@ -180,7 +181,8 @@ class cvae_job(object):
         self.job_id = job_id
         self.gpu_id = gpu_id
         self.cvae_input = cvae_input
-        self.hyper_dim = hyper_dim
+        self.hyper_dim = hyper_dim 
+        self.type = 'cvae'
         self.job = None 
         
     def start(self): 
@@ -205,6 +207,49 @@ class cvae_job(object):
         else: 
             warnings.warn('Attempt to stop a job, which is not running. \n')
 
+            
+class job_list(list): 
+    """
+    This create a list that allows to easily tracking the status of Celery jobs
+    """
+    def __init__(self): 
+        pass
+    
+    def get_running_jobs(self): 
+        running_list = []
+        for job in self: 
+            if job.job and job.job.status == u'PENDING':  
+                running_list.append(job)
+        return running_list 
+    
+    def get_job_from_gpu_id(self, gpu_id): 
+        for job in self.get_running_jobs(): 
+            if job.gpu_id == gpu_id: 
+                return job 
+            
+    def get_omm_jobs(self): 
+        omm_list = [job for job in self if job.type == 'omm']
+        return omm_list 
+    
+    def get_cvae_jobs(self): 
+        cvae_list = [job for job in self if job.type == 'cvae']
+        return cvae_list 
+    
+    def get_available_gpu(self, gpu_list): 
+        avail_gpu = gpu_list[:]
+        for job in jobs.get_running_jobs():
+            avail_gpu.remove(job.gpu_id)
+        return avail_gpu 
+    
+    def get_running_omm_jobs(self): 
+        running_omm_list = [job for job in self.get_running_jobs() if job.type == 'omm'] 
+        return running_omm_list  
+    
+    def get_finished_cave_jobs(self): 
+        finished_cvae_list = [job for job in self.get_cvae_jobs() if job.job.status == u'SUCCESS']
+        return finished_cvae_list
+    
+    
 def stamp_to_time(stamp): 
     import datetime
     datetime.datetime.fromtimestamp(stamp).strftime('%Y-%m-%d %H:%M:%S') 
