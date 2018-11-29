@@ -131,6 +131,7 @@ class omm_job(object):
         self.pdb_file = pdb_file 
         self.check_point = None 
         self.type = 'omm'
+        self.state = 'RECEIVED'
         self.job = None 
         
     def start(self): 
@@ -146,6 +147,7 @@ class omm_job(object):
             sim_job = run_omm_with_celery_fs_pep.delay(self.job_id, self.gpu_id, self.pdb_file, 
                                                  self.check_point) 
         
+        self.state = 'RUNNING'
         self.job = sim_job
     
     def stop(self): 
@@ -153,6 +155,7 @@ class omm_job(object):
         A function to stop the job and return the available gpu_id 
         """
         if self.job: 
+            self.state = 'STOPPED'
             self.job.revoke(terminate=True) 
         else: 
             warnings.warn('Attempt to stop a job, which is not running. \n')
@@ -183,6 +186,7 @@ class cvae_job(object):
         self.cvae_input = cvae_input
         self.hyper_dim = hyper_dim 
         self.type = 'cvae'
+        self.state = 'RECEIVED'
         self.job = None 
         
     def start(self): 
@@ -192,6 +196,7 @@ class cvae_job(object):
         """
         sim_job = run_cvae_with_celery.delay(self.job_id, self.gpu_id, 
                                              self.cvae_input, hyper_dim=self.hyper_dim)
+        self.state = 'RUNNING' 
         self.job = sim_job 
         
     def cave_model(self): 
@@ -203,6 +208,7 @@ class cvae_job(object):
         A function to stop the job and return the available gpu_id 
         """
         if self.job: 
+            self.state = 'STOPPED' 
             self.job.revoke(terminate=True) 
         else: 
             warnings.warn('Attempt to stop a job, which is not running. \n')
@@ -218,8 +224,9 @@ class job_list(list):
     def get_running_jobs(self): 
         running_list = []
         for job in self: 
-            if job.job and job.job.status == u'PENDING':  
-                running_list.append(job)
+            if job.job:
+		if job.state == u'RUNNING':  
+                    running_list.append(job)
         return running_list 
     
     def get_job_from_gpu_id(self, gpu_id): 

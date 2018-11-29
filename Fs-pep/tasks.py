@@ -10,6 +10,15 @@ from molecules.sim.openmm_simulation import openmm_simulate_charmm_nvt, openmm_s
 
 app = Celery('tasks', broker='pyamqp://guest@localhost//', backend='rpc://', broker_pool_limit = None) 
 
+app.conf.update(
+    task_serializer='json',
+    accept_content=['json'],  # Ignore other content
+    result_serializer='json',
+    broker_pool_limit = None, 
+    timezone='US/Eastern',
+    enable_utc=True,
+)
+
 @app.task
 def run_omm_with_celery(run_id, gpu_index, top_file, pdb_file, check_point=None): 
     work_dir = os.getcwd()
