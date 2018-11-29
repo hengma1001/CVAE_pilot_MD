@@ -115,8 +115,9 @@ for i in range(n_cvae):
     jobs.append(cvae_j) 
     time.sleep(2)
 
-while [cvae_j.job.status for cvae_j in jobs.get_cvae_jobs()] != [u'SUCCESS'] * len(jobs.get_cvae_jobs()): 
-    time.sleep(1)
+# while [cvae_j.job.status for cvae_j in jobs.get_cvae_jobs()] != [u'SUCCESS'] * len(jobs.get_cvae_jobs()): 
+while [os.path.isfile(cvae_j.model_weight) for cvae_j in jobs.get_cvae_jobs()] != [True] * len(jobs.get_cvae_jobs()): 
+    time.sleep(.5)
 print('CVAE jobs done. ') 
 
 # for cvae_j in jobs.get_cvae_jobs(): 
