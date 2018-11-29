@@ -119,8 +119,8 @@ while [cvae_j.job.status for cvae_j in jobs.get_cvae_jobs()] != [u'SUCCESS'] * l
     time.sleep(1)
 print('CVAE jobs done. ') 
 
-for cvae_j in jobs.get_cvae_jobs(): 
-    cvae_j.stop()
+# for cvae_j in jobs.get_cvae_jobs(): 
+#     cvae_j.stop()
 
 # All the outliers from cvae
 outlier_list = []

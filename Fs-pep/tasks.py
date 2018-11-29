@@ -14,7 +14,7 @@ app.conf.update(
     task_serializer='json',
     accept_content=['json'],  # Ignore other content
     result_serializer='json',
-    broker_pool_limit = None, 
+    broker_pool_limit = 50, 
     timezone='US/Eastern',
     enable_utc=True,
 )
