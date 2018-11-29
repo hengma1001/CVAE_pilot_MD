@@ -16,7 +16,7 @@ from utils import omm_job, cvae_job
 
 from CVAE import CVAE
 
-n_gpus = 16
+n_gpus = 2
 GPU_ids = range(n_gpus) # [gpu.id for gpu in GPUtil.getGPUs()] 
 print('Available GPUs', GPU_ids) 
 
@@ -29,7 +29,7 @@ top_file = None
 pdb_file = os.path.abspath('./pdb/100-fs-peptide-400K.pdb')
 
 # number of cvae jobs, from hyper_dim 3 
-n_cvae = 4 
+n_cvae = 2 
 
 work_dir = os.path.abspath('./')
 
