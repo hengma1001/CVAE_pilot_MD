@@ -11,10 +11,7 @@ from molecules.sim.openmm_simulation import openmm_simulate_charmm_nvt, openmm_s
 app = Celery('tasks', broker='pyamqp://guest@localhost//', backend='rpc://', broker_pool_limit = None) 
 
 app.conf.update(
-    task_serializer='json',
-    accept_content=['json'],  # Ignore other content
-    result_serializer='json',
-    broker_pool_limit = 50, 
+    broker_pool_limit = 0, 
     timezone='US/Eastern',
     enable_utc=True,
 )
@@ -68,7 +65,7 @@ def run_omm_with_celery_fs_pep(run_id, gpu_index, pdb_file, check_point=None):
                                  sim_time=10000*u.nanoseconds) 
     
 
-@app.task
+@app.task(autoretry_for=(OSError,))
 def run_cvae_with_celery(job_id, gpu_id, cvae_input, hyper_dim=3): 
     cvae_input = os.path.abspath(cvae_input)
     work_dir = os.getcwd() 
@@ -92,5 +89,6 @@ def run_cvae_with_celery(job_id, gpu_id, cvae_input, hyper_dim=3):
     cvae.save(model_file) 
     K.clear_session()
     del cvae
-    return model_weight, model_file
+    sys.exit()
+    # return model_weight, model_file
     

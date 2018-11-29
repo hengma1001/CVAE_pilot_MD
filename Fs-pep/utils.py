@@ -187,6 +187,7 @@ class cvae_job(object):
         self.hyper_dim = hyper_dim 
         self.type = 'cvae'
         self.state = 'RECEIVED'
+        self.model_weight = os.path.join("cvae_model_%d_%d" % (hyper_dim, int(job_id)), 'cvae_weight.h5')
         self.job = None 
         
     def start(self): 
@@ -259,7 +260,7 @@ class job_list(list):
     
 def stamp_to_time(stamp): 
     import datetime
-    datetime.datetime.fromtimestamp(stamp).strftime('%Y-%m-%d %H:%M:%S') 
+    return datetime.datetime.fromtimestamp(stamp).strftime('%Y-%m-%d %H:%M:%S') 
     
 def find_frame(traj_dict, frame_number=0): 
     local_frame = frame_number
