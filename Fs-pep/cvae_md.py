@@ -124,35 +124,36 @@ print('CVAE jobs done. ')
 #     cvae_j.stop()
 
 # All the outliers from cvae
-print('Counting outliers')
+print('Counting outliers') 
+model_weights = [cvae_j.model_weight for cvae_j in jobs.get_cvae_jobs()]
 outlier_list = []
-for cvae_j in jobs.get_cvae_jobs(): 
-    outliers = outliers_from_cvae(cvae_j.model_weight, cvae_input, hyper_dim=cvae_j.hyper_dim, eps=0.35) 
-    print('hyper_dim = %d, number of outliers = %d' % (cvae_j.hyper_dim, len(outliers)))
-    outlier_list.append(np.squeeze(outliers))
-    
-# print(outlier_list)
+for model_weight in model_weights: 
+    for eps in np.arange(0.35, 1.0, 0.05): 
+        outliers = np.squeeze(outliers_from_cvae(model_weight, cvae_input, hyper_dim=int(model_weight[11]), eps=eps))
+        n_outlier = len(outliers)
+        print('When dimension = {0} and eps = {1}, number of outliers is {2}. '.format(int(model_weight[11]), eps, n_outlier))  
+        if n_outlier <= 50: 
+            outlier_list.append(outliers)
+            break
 
 np.save('outlier_list.npy', np.array(outlier_list))
-
-outlier_list = np.hstack(np.array(outlier_list))
-# print(outlier_list.shape) 
-outlier_list = np.unique(outlier_list) 
-# outlier_list = np.unique(np.array(outlier_list).flatten()) 
+outlier_list_uni, outlier_count = np.unique(np.hstack(outlier_list), return_counts=True) 
+outlier_list_ulti = outlier_list_uni[np.where(outlier_count > 1)]
 
 print('Writing pdb files') 
 # write the pdb according the outlier indices
-traj_info = open('./scheduler_logs/openmm_log.txt', 'r').read().split()
+traj_info = open(omm_log, 'r').read().split()
 
 traj_dict = dict(zip(traj_info[::2], np.array(traj_info[1::2]).astype(int)))
 
-outliers_pdb = os.path.join(work_dir, 'outliers_pdb')
+outliers_pdb = os.path.join(work_dir, 'outlier_pdbs')
 make_dir_p(outliers_pdb)
 
-for outlier in outlier_list: 
+for outlier in outlier_list_ulti: 
     traj_file, frame_number = find_frame(traj_dict, outlier) 
-    outlier_pdb_file = os.path.join(outliers_pdb, '%d.pdb' % outlier)
+    outlier_pdb_file = os.path.join(outliers_pdb, '%d_%s_%d.pdb' % (outlier, traj_file[:18], frame_number))
     outlier_pdb = write_pdb_frame(traj_file, pdb_file, frame_number, outlier_pdb_file) 
     
 print('Finishing and cleaning up the jobs. ')
-subprocess.Popen('bash prerun_clean.sh'.split(" "))
+subprocess.Popen('bash prerun_clean.sh &> closing.log'.split(" "))
+
