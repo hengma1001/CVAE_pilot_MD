@@ -126,7 +126,7 @@ print('CVAE jobs done. ')
 # All the outliers from cvae
 outlier_list = []
 for cvae_j in jobs.get_cvae_jobs(): 
-    outliers = outliers_from_cvae(cvae_j.job.result[0], cvae_input, hyper_dim=cvae_j.hyper_dim, eps=0.35) 
+    outliers = outliers_from_cvae(cvae_j.model_weight, cvae_input, hyper_dim=cvae_j.hyper_dim, eps=0.35) 
     outlier_list.append(outliers) 
     
 outlier_list = np.unique(np.array(outlier_list).flatten()) 
