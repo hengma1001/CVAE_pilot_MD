@@ -7,7 +7,7 @@ from glob import glob
 import numpy as np
 import sys, os, h5py, time, errno
 # import GPUtil, subprocess32
-import subprocess32
+import subprocess
 from sklearn.cluster import DBSCAN
 
 from utils import start_rabbit, start_worker, start_flower_monitor, read_h5py_file, cm_to_cvae, job_on_gpu
@@ -127,10 +127,15 @@ print('CVAE jobs done. ')
 outlier_list = []
 for cvae_j in jobs.get_cvae_jobs(): 
     outliers = outliers_from_cvae(cvae_j.model_weight, cvae_input, hyper_dim=cvae_j.hyper_dim, eps=0.35) 
-    outlier_list.append(outliers) 
+    outlier_list.append(np.squeeze(outliers))
     
-outlier_list = np.unique(np.array(outlier_list).flatten()) 
+# print(outlier_list)
 
+outlier_list = np.hstack(np.array(outlier_list))
+# print(outlier_list.shape) 
+outlier_list = np.unique(outlier_list) 
+# outlier_list = np.unique(np.array(outlier_list).flatten()) 
+np.savetxt('outlier_list.txt', outlier_list)
 # write the pdb according the outlier indices
 traj_info = open('./scheduler_logs/openmm_log.txt', 'r').read().split()
 

@@ -265,7 +265,7 @@ def stamp_to_time(stamp):
 def find_frame(traj_dict, frame_number=0): 
     local_frame = frame_number
     for key in traj_dict: 
-        if local_frame - int(traj_dict[key]) <= 0: 
+        if local_frame - int(traj_dict[key]) < 0: 
             dir_name = os.path.dirname(key) 
             traj_file = os.path.join(dir_name, 'output.dcd')             
             return traj_file, local_frame
@@ -297,6 +297,6 @@ def outliers_from_cvae(model_weight, cvae_input, hyper_dim=3, eps=0.35):
     cm_predict = cvae.return_embeddings(cvae_input) 
     db = DBSCAN(eps=0.35, min_samples=10).fit(cm_predict)
     db_label = db.labels_
-    outlier_list = np.array(np.where(db_label == -1)) 
+    outlier_list = np.where(db_label == -1)
     K.clear_session()
     return outlier_list
