@@ -124,18 +124,23 @@ print('CVAE jobs done. ')
 #     cvae_j.stop()
 
 # All the outliers from cvae
+print('Counting outliers')
 outlier_list = []
 for cvae_j in jobs.get_cvae_jobs(): 
     outliers = outliers_from_cvae(cvae_j.model_weight, cvae_input, hyper_dim=cvae_j.hyper_dim, eps=0.35) 
+    print('hyper_dim = %d, number of outliers = %d' % (cvae_j.hyper_dim, len(outliers)))
     outlier_list.append(np.squeeze(outliers))
     
 # print(outlier_list)
+
+np.save('outlier_list.npy', np.array(outlier_list))
 
 outlier_list = np.hstack(np.array(outlier_list))
 # print(outlier_list.shape) 
 outlier_list = np.unique(outlier_list) 
 # outlier_list = np.unique(np.array(outlier_list).flatten()) 
-np.savetxt('outlier_list.txt', outlier_list)
+
+print('Writing pdb files') 
 # write the pdb according the outlier indices
 traj_info = open('./scheduler_logs/openmm_log.txt', 'r').read().split()
 

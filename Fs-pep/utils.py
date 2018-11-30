@@ -295,7 +295,8 @@ def outliers_from_cvae(model_weight, cvae_input, hyper_dim=3, eps=0.35):
     cvae = CVAE(cvae_input.shape[1:], hyper_dim) 
     cvae.model.load_weights(model_weight)
     cm_predict = cvae.return_embeddings(cvae_input) 
-    db = DBSCAN(eps=0.35, min_samples=10).fit(cm_predict)
+    eps = np.sqrt(hyper_dim) / np.sqrt(3) * eps
+    db = DBSCAN(eps=eps, min_samples=10).fit(cm_predict)
     db_label = db.labels_
     outlier_list = np.where(db_label == -1)
     K.clear_session()
