@@ -120,8 +120,8 @@ while [os.path.isfile(cvae_j.model_weight) for cvae_j in jobs.get_cvae_jobs()] !
     time.sleep(.5)
 print('CVAE jobs done. ') 
 
-# for cvae_j in jobs.get_cvae_jobs(): 
-#     cvae_j.stop()
+for cvae_j in jobs.get_cvae_jobs(): 
+    cvae_j.status = 'FINISHED'
 
 # All the outliers from cvae
 print('Counting outliers') 
