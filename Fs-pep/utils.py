@@ -226,7 +226,7 @@ class job_list(list):
         running_list = []
         for job in self: 
             if job.job:
-		if job.state == u'RUNNING':  
+                if job.state == u'RUNNING':  
                     running_list.append(job)
         return running_list 
     
@@ -245,7 +245,7 @@ class job_list(list):
     
     def get_available_gpu(self, gpu_list): 
         avail_gpu = gpu_list[:]
-        for job in jobs.get_running_jobs():
+        for job in self.get_running_jobs():
             avail_gpu.remove(job.gpu_id)
         return avail_gpu 
     
@@ -264,7 +264,7 @@ def stamp_to_time(stamp):
     
 def find_frame(traj_dict, frame_number=0): 
     local_frame = frame_number
-    for key in traj_dict: 
+    for key in sorted(traj_dict.keys()): 
         if local_frame - int(traj_dict[key]) < 0: 
             dir_name = os.path.dirname(key) 
             traj_file = os.path.join(dir_name, 'output.dcd')             
@@ -300,3 +300,11 @@ def outliers_from_cvae(model_weight, cvae_input, hyper_dim=3, eps=0.35):
     outlier_list = np.where(db_label == -1)
     K.clear_session()
     return outlier_list
+
+def predict_from_cvae(model_weight, cvae_input, hyper_dim=3): 
+    os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
+    os.environ["CUDA_VISIBLE_DEVICES"]=str(0)  
+    cvae = CVAE(cvae_input.shape[1:], hyper_dim) 
+    cvae.model.load_weights(model_weight)
+    cm_predict = cvae.return_embeddings(cvae_input) 
+    return cm_predict

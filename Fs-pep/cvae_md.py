@@ -5,7 +5,7 @@ print('============================================================== ')
 
 from glob import glob
 import numpy as np
-import sys, os, h5py, time, errno
+import sys, os, h5py, time, errno, random
 # import GPUtil, subprocess32
 import subprocess
 from sklearn.cluster import DBSCAN
@@ -102,7 +102,7 @@ cvae_input_save.create_dataset('contact_maps', data=cvae_input)
 cvae_input_save.close() 
 
 # CVAE
-hyper_dims = np.array(range(n_cvae)) + 3
+hyper_dims = np.arange(n_cvae) + 3
 print('Running CVAE for hyper dimension:', hyper_dims) 
 
 for i in range(n_cvae): 
@@ -115,31 +115,33 @@ for i in range(n_cvae):
     jobs.append(cvae_j) 
     time.sleep(2)
 
-# while [cvae_j.job.status for cvae_j in jobs.get_cvae_jobs()] != [u'SUCCESS'] * len(jobs.get_cvae_jobs()): 
+    
 while [os.path.isfile(cvae_j.model_weight) for cvae_j in jobs.get_cvae_jobs()] != [True] * len(jobs.get_cvae_jobs()): 
     time.sleep(.5)
 print('CVAE jobs done. ') 
 
 for cvae_j in jobs.get_cvae_jobs(): 
-    cvae_j.status = 'FINISHED'
+    cvae_j.state = 'FINISHED'
 
 # All the outliers from cvae
 print('Counting outliers') 
 model_weights = [cvae_j.model_weight for cvae_j in jobs.get_cvae_jobs()]
 outlier_list = []
 for model_weight in model_weights: 
-    for eps in np.arange(0.35, 1.0, 0.05): 
+    print('Model latent dimension: ', int(model_weight[11]))
+    for eps in np.arange(0.35, 2, 0.05): 
         outliers = np.squeeze(outliers_from_cvae(model_weight, cvae_input, hyper_dim=int(model_weight[11]), eps=eps))
         n_outlier = len(outliers)
-        if n_outlier <= 50: 
+        print('dimension = {0}, eps = {1:.2f}, number of outlier found: {2}'.format(
+            model_weight[11], eps, n_outlier))
+        if n_outlier <= 20: 
             outlier_list.append(outliers)
             break
 
 np.save('outlier_list.npy', np.array(outlier_list))
 outlier_list_uni, outlier_count = np.unique(np.hstack(outlier_list), return_counts=True) 
-outlier_list_ulti = outlier_list_uni[np.where(outlier_count > 1)]
 
-print('Writing pdb files') 
+print('\nWriting pdb files') 
 # write the pdb according the outlier indices
 traj_info = open('./scheduler_logs/openmm_log.txt', 'r').read().split()
 
@@ -148,10 +150,26 @@ traj_dict = dict(zip(traj_info[::2], np.array(traj_info[1::2]).astype(int)))
 outliers_pdb = os.path.join(work_dir, 'outlier_pdbs')
 make_dir_p(outliers_pdb)
 
-for outlier in outlier_list_ulti: 
-    traj_file, frame_number = find_frame(traj_dict, outlier) 
-    outlier_pdb_file = os.path.join(outliers_pdb, '%d_%s_%d.pdb' % (outlier, traj_file[:18], frame_number))
-    outlier_pdb = write_pdb_frame(traj_file, pdb_file, frame_number, outlier_pdb_file) 
+outlier_pdb_files = []
+for outlier in outlier_list_uni: 
+    traj_file, num_frame = find_frame(traj_dict, outlier) 
+    print('Found outlier# {} at frame {} of {}'.format(outlier, num_frame, traj_file))
+    outlier_pdb_file = os.path.join(outliers_pdb, '{}_{}_{}.pdb'.format(outlier, traj_file[:18], num_frame))
+    outlier_pdb = write_pdb_frame(traj_file, pdb_file, num_frame, outlier_pdb_file) 
+    outlier_pdb_files.append(outlier_pdb_file) 
+
+
+# Restarting simulation 
+print('Restarting OpenMM simulation on GPU', jobs.get_available_gpu(GPU_ids)
+for gpu_id in jobs.get_available_gpu(GPU_ids): 
+    random.shuffle(outlier_pdb_files)
+    outlier_pdb_file = outlier_pdb_files[0]
+    job = omm_job(job_id=int(time.time()), gpu_id=gpu_id, top_file=top_file, pdb_file=outlier_pdb_file)
+    outlier_pdb_files.remove(pdb_file) 
+    job.start()
+    print('haha')
+    jobs.append(job) 
+    time.sleep(2)
     
 print('Finishing and cleaning up the jobs. ')
 subprocess.Popen('bash prerun_clean.sh'.split(" "))
