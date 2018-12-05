@@ -27,7 +27,7 @@ def start_rabbit(rabbitmq_log):
     
     """
     log = open(rabbitmq_log, 'w')
-    subprocess.Popen('rabbitmq-server', stdout=log, stderr=log) 
+    subprocess.Popen('rabbitmq-server &'.split(' '), stdout=log, stderr=log) 
 
 def start_worker(celery_worker_log): 
     """
