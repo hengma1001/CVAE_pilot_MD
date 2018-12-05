@@ -58,12 +58,12 @@ for gpu_id in GPU_ids:
     print('Started OpenMM jobs on GPU', gpu_id)
     time.sleep(2)
     
-print('Waiting 5 mins for omm to write valid contact map .h5 files ')
+print('Waiting 2 mins for omm to write valid contact map .h5 files ')
 time.sleep(120) 
 
 
 # Read all the contact map .h5 file in local dir
-cm_files = sorted(glob('./omm*/*_cm.h5'))
+cm_files = sorted(glob('omm*/*_cm.h5'))
 cm_data_lists = [read_h5py_file(cm_file) for cm_file in cm_files] 
 
 print('Waiting for the OpenMM to complete the first 100,000 frames as CVAE training data')
@@ -128,7 +128,7 @@ print('Counting outliers')
 model_weights = [cvae_j.model_weight for cvae_j in jobs.get_cvae_jobs()]
 outlier_list = []
 for model_weight in model_weights: 
-    for eps in np.arange(0.35, 1.0, 0.05): 
+    for eps in np.arange(0.10, 1.0, 0.05): 
         outliers = np.squeeze(outliers_from_cvae(model_weight, cvae_input, hyper_dim=int(model_weight[11]), eps=eps))
         n_outlier = len(outliers)
         print('When dimension = {0} and eps = {1}, number of outliers is {2}. '.format(int(model_weight[11]), eps, n_outlier))  
