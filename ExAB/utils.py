@@ -1,4 +1,4 @@
-from tasks import run_omm_with_celery, run_omm_with_celery_fs_pep, run_cvae_with_celery
+from tasks import run_omm_with_celery, run_omm_with_celery_fs_pep, run_omm_with_celery_exab, run_cvae_with_celery
 from celery.bin import worker
 import numpy as np
 import threading, h5py
@@ -143,6 +143,9 @@ class omm_job(object):
             sim_job = run_omm_with_celery.delay(self.job_id, self.gpu_id, 
                                                 self.top_file, self.pdb_file,
                                                 self.check_point) 
+        elif 'exab' in self.top_file: 
+            sim_job = run_omm_with_celery_exab.delay(self.job, self.gpu_id, 
+                    self.topfile, self.pdb_file, self.check_point)
         else: 
             sim_job = run_omm_with_celery_fs_pep.delay(self.job_id, self.gpu_id, self.pdb_file, 
                                                  self.check_point) 

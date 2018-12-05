@@ -6,7 +6,7 @@ import sys, os, shutil, gc
 import errno 
 
 # sys.path.append('/home/hm0/Research/molecules/molecules_git/build/lib')
-from molecules.sim.openmm_simulation import openmm_simulate_charmm_nvt, openmm_simulate_amber_fs_pep
+from molecules.sim.openmm_simulation import openmm_simulate_charmm_nvt, openmm_simulate_amber_fs_pep, openmm_simulate_charmm_npt_z
 
 app = Celery('tasks', broker='pyamqp://guest@localhost//', backend='rpc://', broker_pool_limit = None) 
 
@@ -64,6 +64,32 @@ def run_omm_with_celery_fs_pep(run_id, gpu_index, pdb_file, check_point=None):
                                  report_time=50*u.picoseconds, 
                                  sim_time=10000*u.nanoseconds) 
     
+    
+@app.task
+def run_omm_with_celery_exab(run_id, gpu_index, top_file, pdb_file, check_point=None): 
+    work_dir = os.getcwd()
+    iter_dir = os.path.join(work_dir, "omm_run_%d" % int(run_id))
+
+    try:
+        os.mkdir(iter_dir)
+    except OSError as exc:
+        if exc.errno != errno.EEXIST:
+            raise
+        pass
+
+    os.chdir(iter_dir)
+    shutil.copy2(top_file, iter_dir)
+    shutil.copy2(pdb_file, iter_dir)
+    openmm_simulate_charmm_npt_z(top_file, pdb_file,
+                               check_point = check_point,
+                               GPU_index=gpu_index,
+                               output_traj="output.dcd",
+                               output_log="output.log",
+                               output_cm='output_cm.h5',
+                               report_time=50*u.picoseconds,
+                               sim_time=10000*u.nanoseconds)
+
+
 
 @app.task(autoretry_for=(OSError,))
 def run_cvae_with_celery(job_id, gpu_id, cvae_input, hyper_dim=3): 
