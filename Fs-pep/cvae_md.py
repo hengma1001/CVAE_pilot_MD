@@ -18,7 +18,7 @@ from CVAE import CVAE
 
 # n_gpus = 16
 # number of cvae jobs, starting from hyper_dim 3 
-n_cvae = 2
+n_cvae = 4
 GPU_ids = [gpu.id for gpu in GPUtil.getGPUs()] 
 print('Available GPUs', GPU_ids) 
 
@@ -30,7 +30,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 # pdb_file = os.path.abspath('../P27-all/C1B48/C1B48.pdb.gz')
 top_file = None
 pdb_file = os.path.abspath('./pdb/100-fs-peptide-400K.pdb')
-
+ref_pdb_file = None # os.path.abspath('./pdb/.pdb')
 
  
 work_dir = os.path.abspath('./')
@@ -137,7 +137,13 @@ restarted_points = []
 
 
 # monitoring new outlier
+iter_record = 0 
 while True: 
+    print('\n\n===================================')
+    print('Starting iteration: ', iter_record)
+    iter_record += 1 
+
+    print('Counting number of frames in current step.') 
     cm_files_iter = sorted(glob('omm*/*_cm.h5')) 
 
     for cm_file in cm_files_iter: 
@@ -148,16 +154,16 @@ while True:
     for cm in cm_data_lists: 
         cm.refresh() 
 
-    print('Current number of total frames: ', frame_number(cm_data_lists)) 
+    print(' Current number of total frames: ', frame_number(cm_data_lists)) 
     
-    # Create log file to track openmm traj information to backtrack 
+    # Create openmm log file to track openmm traj information to backtrack 
     train_data_length = [cm_data.shape[1] for cm_data in cm_data_lists]
     log = open(omm_log, 'w') 
     for i, n_frame in enumerate(train_data_length): 
         log.writelines("{} {}\n".format(cm_files[i], n_frame))    
     log.close()
     
-    # Prep data fro cvae
+    # Prep data fro cvae prediction
     cvae_input = cm_to_cvae(cm_data_lists)
 
     outlier_list = []
@@ -174,7 +180,7 @@ while True:
     
     outlier_list_uni, outlier_count = np.unique(np.hstack(outlier_list), return_counts=True) 
     
-    print('\nWriting pdb files') 
+    print('\nPreparing to write new pdb files') 
     # write the pdb according the outlier indices
     traj_info = open('./scheduler_logs/openmm_log.txt', 'r').read().split()
     
@@ -185,29 +191,46 @@ while True:
     
 #     outlier_pdb_files = []
 
+    # Write the new outliers 
     break_loop = 0
     for outlier in outlier_list_uni: 
         traj_file, num_frame = find_frame(traj_dict, outlier) 
         outlier_pdb_file = os.path.join(outliers_pdb_path, '{}_{:06d}.pdb'.format(traj_file[:18], num_frame))
         if outlier_pdb_file not in outlier_pdb_files: 
             print('Found a new outlier# {} at frame {} of {}'.format(outlier, num_frame, traj_file))
-            print(outlier_pdb_file) 
             outlier_pdb = write_pdb_frame(traj_file, pdb_file, num_frame, outlier_pdb_file) 
             print('     Written as {}'.format(outlier_pdb_file))
             outlier_pdb_files.append(outlier_pdb_file) 
             break_loop += 1
 
-    print('Restarting OpenMM simulation on GPU', jobs.get_available_gpu(GPU_ids))
-    for gpu_id in jobs.get_available_gpu(GPU_ids): 
-        omm_pdb_file = [outlier for outlier in outlier_pdb_files if outlier not in restarted_points]
-        random.shuffle(omm_pdb_file)
-        omm_pdb_file = omm_pdb_file[0]
-        job = omm_job(job_id=int(time.time()), gpu_id=gpu_id, top_file=top_file, pdb_file=omm_pdb_file)
-        restarted_points.append(omm_pdb_file) 
-        job.start()
-        print('Restarted OMM simulation on {}'.format(gpu_id))
-        jobs.append(job) 
-        time.sleep(2)
+    # Stop a simulation if len(traj) > 10k and no outlier in past 5k frames
+    for job in jobs.get_running_omm_jobs(): 
+        job_h5 = os.path.join(job.save_path, 'output_cm.h5') 
+        assert (job_h5 in cm_files)
+        job_n_frames = read_h5py_file(job_h5).shape[1] 
+        print('The running job under {} has completed {} frames. '.format(job.save_path, job_n_frames))
+        job_outlier_frames = [int(outlier[-10:-4]) for outlier in outlier_pdb_files if job_path in outlier] 
+        latest_outlier_pdb = max(job_outlier_frames) 
+        if job_n_frames >= 1e4 and job_n_frames - latest_outlier_pdb >= 5e3: 
+            print('Stopping running job under ', job.save_path) 
+            job.stop()
+            time.sleep(2) 
+
+    # Start a new openmm simulation if there's GPU available 
+    if jobs.get_available_gpu(GPU_ids): 
+        print('Restarting OpenMM simulation on GPU', jobs.get_available_gpu(GPU_ids))
+        for gpu_id in jobs.get_available_gpu(GPU_ids): 
+            omm_pdb_file = [outlier for outlier in outlier_pdb_files if outlier not in restarted_points]
+            random.shuffle(omm_pdb_file)
+            omm_pdb_file = omm_pdb_file[0]
+            job = omm_job(job_id=int(time.time()), gpu_id=gpu_id, top_file=top_file, pdb_file=omm_pdb_file)
+            restarted_points.append(omm_pdb_file) 
+            job.start()
+            print('Restarted OMM simulation on {}'.format(gpu_id))
+            jobs.append(job) 
+            time.sleep(2)
+    else: 
+        print('No GPU available') 
 
     if break_loop: 
         print('Successfully find {} new outliers.'.format(break_loop)) 

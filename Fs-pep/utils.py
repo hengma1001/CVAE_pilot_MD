@@ -132,6 +132,7 @@ class omm_job(object):
         self.check_point = None 
         self.type = 'omm'
         self.state = 'RECEIVED'
+        self.save_path = 'omm_run_%d' % job_id
         self.job = None 
         
     def start(self): 
