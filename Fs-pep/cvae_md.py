@@ -107,6 +107,7 @@ cvae_input_save.close()
 
 # CVAE
 hyper_dims = np.arange(n_cvae) + 3
+print('\n===========================================\n')
 print('\nRunning CVAE for hyper dimension:', hyper_dims) 
 
 for i in range(n_cvae): 
