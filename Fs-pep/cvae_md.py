@@ -9,6 +9,8 @@ import sys, os, h5py, time, errno, random
 import GPUtil
 import subprocess
 from sklearn.cluster import DBSCAN
+import MDAnalysis as mda
+from  MDAnalysis.analysis.rms import RMSD
 
 from utils import start_rabbit, start_worker, start_flower_monitor, read_h5py_file, cm_to_cvae, job_on_gpu
 from utils import find_frame, write_pdb_frame, make_dir_p, job_list, outliers_from_cvae
@@ -30,7 +32,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 # pdb_file = os.path.abspath('../P27-all/C1B48/C1B48.pdb.gz')
 top_file = None
 pdb_file = os.path.abspath('./pdb/100-fs-peptide-400K.pdb')
-ref_pdb_file = None # os.path.abspath('./pdb/.pdb')
+ref_pdb_file = os.path.abspath('./pdb/fs-peptide.pdb')
 
  
 work_dir = os.path.abspath('./')
@@ -60,7 +62,7 @@ for gpu_id in GPU_ids:
     print('Started OpenMM jobs on GPU', gpu_id)
     time.sleep(2)
     
-print('Waiting 5 mins for omm to write valid contact map .h5 files ')
+print('Waiting 2 mins for omm to write valid contact map .h5 files ')
 time.sleep(120) 
 
 
@@ -105,7 +107,7 @@ cvae_input_save.close()
 
 # CVAE
 hyper_dims = np.arange(n_cvae) + 3
-print('Running CVAE for hyper dimension:', hyper_dims) 
+print('\nRunning CVAE for hyper dimension:', hyper_dims) 
 
 for i in range(n_cvae): 
     cvae_j = cvae_job(time.time(), i, cvae_input_file, hyper_dim=hyper_dims[i]) 
@@ -203,14 +205,30 @@ while True:
             outlier_pdb_files.append(outlier_pdb_file) 
             break_loop += 1
 
+    # Sort the outliers according to their RMSD to the native structure 
+    # Calculate the RMSD
+    if ref_pdb_file: 
+        outlier_traj = mda.Universe(outlier_pdb_files[0], outlier_pdb_files) 
+        ref_traj = mda.Universe(ref_pdb_file) 
+        R = RMSD(outlier_traj, ref_traj, select='protein and name CA') 
+        R.run()    
+        # Sorted the pdb entries 
+        # sorted_outlier_pdb_files = [outlier_file for _, outlier_file in sorted(zip(R.rmsd[:,2], outlier_pdb_file))] 
+        # Make a dict contains outliers and their RMSD
+        outlier_pdb_RMSD = dict(zip(outlier_pdb_files, R.rmsd[:,2]))
+#     print(outlier_pdb_RMSD)
+
     # Stop a simulation if len(traj) > 10k and no outlier in past 5k frames
     for job in jobs.get_running_omm_jobs(): 
         job_h5 = os.path.join(job.save_path, 'output_cm.h5') 
         assert (job_h5 in cm_files)
-        job_n_frames = read_h5py_file(job_h5).shape[1] 
+        job_n_frames = cm_data_lists[cm_files.index(job_h5)].shape[1] 
         print('The running job under {} has completed {} frames. '.format(job.save_path, job_n_frames))
-        job_outlier_frames = [int(outlier[-10:-4]) for outlier in outlier_pdb_files if job_path in outlier] 
-        latest_outlier_pdb = max(job_outlier_frames) 
+        job_outlier_frames = [int(outlier[-10:-4]) for outlier in outlier_pdb_files if job.save_path in outlier] 
+        if job_outlier_frames: 
+            latest_outlier_pdb = max(job_outlier_frames) 
+        else: 
+            latest_outlier_pdb = 1e20
         if job_n_frames >= 1e4 and job_n_frames - latest_outlier_pdb >= 5e3: 
             print('Stopping running job under ', job.save_path) 
             job.stop()
@@ -219,16 +237,41 @@ while True:
     # Start a new openmm simulation if there's GPU available 
     if jobs.get_available_gpu(GPU_ids): 
         print('Restarting OpenMM simulation on GPU', jobs.get_available_gpu(GPU_ids))
-        for gpu_id in jobs.get_available_gpu(GPU_ids): 
-            omm_pdb_file = [outlier for outlier in outlier_pdb_files if outlier not in restarted_points]
-            random.shuffle(omm_pdb_file)
-            omm_pdb_file = omm_pdb_file[0]
-            job = omm_job(job_id=int(time.time()), gpu_id=gpu_id, top_file=top_file, pdb_file=omm_pdb_file)
-            restarted_points.append(omm_pdb_file) 
-            job.start()
-            print('Restarted OMM simulation on {}'.format(gpu_id))
-            jobs.append(job) 
-            time.sleep(2)
+        if ref_pdb_file:
+            print('Starting the simulation according the RMSD seq') 
+            for gpu_id in jobs.get_available_gpu(GPU_ids): 
+                omm_pdb_files_sorted = [outlier for outlier in sorted(outlier_pdb_RMSD, key=outlier_pdb_RMSD.get) \
+                        if outlier not in restarted_points] 
+#                 print(omm_pdb_files_sorted) 
+                if len(restarted_points) % 4 == 3: 
+                    omm_pdb_file = omm_pdb_files_sorted[-1] 
+                    print('Starting simulation on highest RMSD outlier conformer: ', omm_pdb_file[-29:]) 
+                elif len(restarted_points) % 4 == 2: 
+                    omm_pdb_file = random.choice(omm_pdb_files_sorted) # [random.randrange(len(omm_pdb_files_sorted))]
+                    print('Starting simulation on random outlier conformer: ', omm_pdb_file[-29:]) 
+                else: 
+                    omm_pdb_file = omm_pdb_files_sorted[0]
+                    print('Starting simulation on the lowest RMSD outlier conformer: ', omm_pdb_file[-29:]) 
+#                 print(omm_pdb_file) 
+                job = omm_job(job_id=int(time.time()), gpu_id=gpu_id, top_file=top_file, pdb_file=omm_pdb_file)
+                restarted_points.append(omm_pdb_file) 
+                job.start()
+                print('Restarted OMM simulation on {}'.format(gpu_id))
+                jobs.append(job) 
+                time.sleep(2)
+
+            # Total 4; 1, 2: lowest RMSD; 3: highest RMSD; 4 random, tracked by restarted_points
+        else: 
+            for gpu_id in jobs.get_available_gpu(GPU_ids): 
+                omm_pdb_files = [outlier for outlier in outlier_pdb_files if outlier not in restarted_points]
+                omm_pdb_file = random.choice(omm_pdb_files)
+                print('Starting simulation on random outlier conformer: ', omm_pdb_file[-29:]) 
+                job = omm_job(job_id=int(time.time()), gpu_id=gpu_id, top_file=top_file, pdb_file=omm_pdb_file)
+                restarted_points.append(omm_pdb_file) 
+                job.start()
+                print('Restarted OMM simulation on {}'.format(gpu_id))
+                jobs.append(job) 
+                time.sleep(2)
     else: 
         print('No GPU available') 
 
