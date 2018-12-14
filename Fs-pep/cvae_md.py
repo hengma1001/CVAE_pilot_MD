@@ -75,7 +75,7 @@ frame_number = lambda lists: sum([cm.shape[1] for cm in lists])
 
 frame_marker = 0 
 # number of training frames for cvae, change to 1e5 later, HM 
-while frame_number(cm_data_lists) < 20000: 
+while frame_number(cm_data_lists) < 100000: 
     for cm in cm_data_lists: 
         cm.refresh() 
     if frame_number(cm_data_lists) >= frame_marker: 
@@ -144,7 +144,6 @@ iter_record = 0
 while True: 
     print('\n\n===================================')
     print('Starting iteration: ', iter_record)
-    iter_record += 1 
 
     print('Counting number of frames in current step.') 
     cm_files_iter = sorted(glob('omm*/*_cm.h5')) 
@@ -168,6 +167,12 @@ while True:
     
     # Prep data fro cvae prediction
     cvae_input = cm_to_cvae(cm_data_lists)
+
+    if iter_record % 10 == 0: 
+        cvae_input_file = os.path.join(cvae_input_dir, 'cvae_input_{}.h5'.format(iter_record))
+        cvae_input_save = h5py.File(cvae_input_file, 'w')
+        cvae_input_save.create_dataset('contact_maps', data=cvae_input)
+        cvae_input_save.close() 
 
     outlier_list = []
     for model_weight in model_weights: 
@@ -195,16 +200,26 @@ while True:
 #     outlier_pdb_files = []
 
     # Write the new outliers 
-    break_loop = 0
+    n_outlier_iter = 0
+    new_outlier_list = []
     for outlier in outlier_list_uni: 
         traj_file, num_frame = find_frame(traj_dict, outlier) 
+        if number_frame == 0: 
+            print('Detected initial point as outlier, skipping...') 
+            continue
         outlier_pdb_file = os.path.join(outliers_pdb_path, '{}_{:06d}.pdb'.format(traj_file[:18], num_frame))
+        new_outlier_list.append(outlier_pdb_path) 
         if outlier_pdb_file not in outlier_pdb_files: 
             print('Found a new outlier# {} at frame {} of {}'.format(outlier, num_frame, traj_file))
             outlier_pdb = write_pdb_frame(traj_file, pdb_file, num_frame, outlier_pdb_file) 
             print('     Written as {}'.format(outlier_pdb_file))
             outlier_pdb_files.append(outlier_pdb_file) 
-            break_loop += 1
+            n_outlier_iter += 1
+
+    for outlier_pdb_file in outlier_pdb_files: 
+        if outlier_pdb_file not in new_outlier_list: 
+            print('Old outlier {} is now connected to a cluster and removing it from the outlier list '.format(outlier_pdb_file[-29:]))
+            outlier_pdb_files.remove(outlier_pdb_file) 
 
     # Sort the outliers according to their RMSD to the native structure 
     # Calculate the RMSD
@@ -237,7 +252,7 @@ while True:
 
     # Start a new openmm simulation if there's GPU available 
     if jobs.get_available_gpu(GPU_ids): 
-        print('Restarting OpenMM simulation on GPU', jobs.get_available_gpu(GPU_ids))
+        print('\nRestarting OpenMM simulation on GPU', jobs.get_available_gpu(GPU_ids))
         if ref_pdb_file:
             print('Starting the simulation according the RMSD seq') 
             for gpu_id in jobs.get_available_gpu(GPU_ids): 
@@ -274,13 +289,14 @@ while True:
                 jobs.append(job) 
                 time.sleep(2)
     else: 
-        print('No GPU available') 
+        print('No GPU available, continuing...') 
 
-    if break_loop: 
-        print('Successfully find {} new outliers.'.format(break_loop)) 
+    if n_outlier_iter: 
+        print('Successfully found {} new outliers.'.format(n_outlier_iter)) 
     else: 
         print('Nothing found, next iter.') 
 
+    iter_record += 1 
     print('Waiting for 5 min for next iter. \n\n')
     time.sleep(300)
  
