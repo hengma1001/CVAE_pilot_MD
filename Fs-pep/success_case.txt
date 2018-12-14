@@ -1,0 +1,1806 @@
+Started OpenMM jobs on GPU 0
+Started OpenMM jobs on GPU 1
+Started OpenMM jobs on GPU 2
+Started OpenMM jobs on GPU 3
+Started OpenMM jobs on GPU 4
+Started OpenMM jobs on GPU 5
+Started OpenMM jobs on GPU 6
+Started OpenMM jobs on GPU 7
+Started OpenMM jobs on GPU 8
+Started OpenMM jobs on GPU 9
+Started OpenMM jobs on GPU 10
+Started OpenMM jobs on GPU 11
+Started OpenMM jobs on GPU 12
+Started OpenMM jobs on GPU 13
+Started OpenMM jobs on GPU 14
+Started OpenMM jobs on GPU 15
+Waiting 2 mins for omm to write valid contact map .h5 files
+Waiting for the OpenMM to complete the first 100,000 frames as CVAE training data
+Ready for CAVE with total number of frames: 104027
+
+===========================================
+
+
+Running CVAE for hyper dimension: [3 4 5 6]
+Started CVAE for hyper dimension: 3
+Started CVAE for hyper dimension: 4
+Started CVAE for hyper dimension: 5
+Started CVAE for hyper dimension: 6
+CVAE jobs done.
+
+
+===================================
+Starting iteration:  0
+Counting number of frames in current step.
+ Current number of total frames:  106812
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 104
+dimension = 3, eps = 0.25, number of outlier found: 22
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1796
+dimension = 4, eps = 0.25, number of outlier found: 392
+dimension = 4, eps = 0.30, number of outlier found: 125
+dimension = 4, eps = 0.35, number of outlier found: 36
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20477
+dimension = 5, eps = 0.25, number of outlier found: 5907
+dimension = 5, eps = 0.30, number of outlier found: 1438
+dimension = 5, eps = 0.35, number of outlier found: 349
+dimension = 5, eps = 0.40, number of outlier found: 75
+dimension = 5, eps = 0.45, number of outlier found: 23
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 65781
+dimension = 6, eps = 0.25, number of outlier found: 35287
+dimension = 6, eps = 0.30, number of outlier found: 14279
+dimension = 6, eps = 0.35, number of outlier found: 4758
+dimension = 6, eps = 0.40, number of outlier found: 1462
+dimension = 6, eps = 0.45, number of outlier found: 403
+dimension = 6, eps = 0.50, number of outlier found: 100
+dimension = 6, eps = 0.55, number of outlier found: 21
+
+Preparing to write new pdb files
+Found a new outlier# 321 at frame 321 of omm_run_1544718172/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718172_000321.pdb
+Found a new outlier# 607 at frame 607 of omm_run_1544718172/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718172_000607.pdb
+Found a new outlier# 760 at frame 760 of omm_run_1544718172/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718172_000760.pdb
+Found a new outlier# 774 at frame 774 of omm_run_1544718172/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718172_000774.pdb
+Found a new outlier# 1826 at frame 579 of omm_run_1544718174/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718174_000579.pdb
+Found a new outlier# 1829 at frame 582 of omm_run_1544718174/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718174_000582.pdb
+Found a new outlier# 1968 at frame 721 of omm_run_1544718174/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718174_000721.pdb
+Found a new outlier# 1969 at frame 722 of omm_run_1544718174/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718174_000722.pdb
+Found a new outlier# 1970 at frame 723 of omm_run_1544718174/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718174_000723.pdb
+Found a new outlier# 1971 at frame 724 of omm_run_1544718174/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718174_000724.pdb
+Found a new outlier# 1972 at frame 725 of omm_run_1544718174/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718174_000725.pdb
+Found a new outlier# 1973 at frame 726 of omm_run_1544718174/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718174_000726.pdb
+Found a new outlier# 1974 at frame 727 of omm_run_1544718174/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718174_000727.pdb
+Found a new outlier# 1975 at frame 728 of omm_run_1544718174/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718174_000728.pdb
+Found a new outlier# 1976 at frame 729 of omm_run_1544718174/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718174_000729.pdb
+Found a new outlier# 1977 at frame 730 of omm_run_1544718174/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718174_000730.pdb
+Found a new outlier# 1978 at frame 731 of omm_run_1544718174/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718174_000731.pdb
+Found a new outlier# 1979 at frame 732 of omm_run_1544718174/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718174_000732.pdb
+Found a new outlier# 1980 at frame 733 of omm_run_1544718174/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718174_000733.pdb
+Found a new outlier# 1981 at frame 734 of omm_run_1544718174/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718174_000734.pdb
+Found a new outlier# 2210 at frame 963 of omm_run_1544718174/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718174_000963.pdb
+Found a new outlier# 2989 at frame 484 of omm_run_1544718176/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718176_000484.pdb
+Found a new outlier# 3864 at frame 104 of omm_run_1544718178/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718178_000104.pdb
+Found a new outlier# 3886 at frame 126 of omm_run_1544718178/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718178_000126.pdb
+Found a new outlier# 3910 at frame 150 of omm_run_1544718178/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718178_000150.pdb
+Found a new outlier# 3911 at frame 151 of omm_run_1544718178/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718178_000151.pdb
+Found a new outlier# 3913 at frame 153 of omm_run_1544718178/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718178_000153.pdb
+Found a new outlier# 3914 at frame 154 of omm_run_1544718178/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718178_000154.pdb
+Found a new outlier# 4542 at frame 782 of omm_run_1544718178/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718178_000782.pdb
+Found a new outlier# 5067 at frame 51 of omm_run_1544718180/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718180_000051.pdb
+Found a new outlier# 5377 at frame 361 of omm_run_1544718180/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718180_000361.pdb
+Found a new outlier# 5395 at frame 379 of omm_run_1544718180/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718180_000379.pdb
+Found a new outlier# 7915 at frame 108 of omm_run_1544718184/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718184_000108.pdb
+Found a new outlier# 10044 at frame 837 of omm_run_1544718186/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718186_000837.pdb
+Found a new outlier# 12312 at frame 306 of omm_run_1544718190/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718190_000306.pdb
+Found a new outlier# 13088 at frame 1082 of omm_run_1544718190/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718190_001082.pdb
+Found a new outlier# 13089 at frame 1083 of omm_run_1544718190/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718190_001083.pdb
+Found a new outlier# 13090 at frame 1084 of omm_run_1544718190/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718190_001084.pdb
+Found a new outlier# 13091 at frame 1085 of omm_run_1544718190/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718190_001085.pdb
+Found a new outlier# 17779 at frame 207 of omm_run_1544718198/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718198_000207.pdb
+Found a new outlier# 17841 at frame 269 of omm_run_1544718198/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718198_000269.pdb
+Found a new outlier# 17854 at frame 282 of omm_run_1544718198/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718198_000282.pdb
+Found a new outlier# 19108 at frame 124 of omm_run_1544718200/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718200_000124.pdb
+Found a new outlier# 20637 at frame 266 of omm_run_1544718202/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718202_000266.pdb
+Found a new outlier# 20652 at frame 281 of omm_run_1544718202/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718202_000281.pdb
+Found a new outlier# 20688 at frame 317 of omm_run_1544718202/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718202_000317.pdb
+Found a new outlier# 20733 at frame 362 of omm_run_1544718202/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544718202_000362.pdb
+Found a new outlier# 29575 at frame 2243 of omm_run_1544721520/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721520_002243.pdb
+Found a new outlier# 29586 at frame 2254 of omm_run_1544721520/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721520_002254.pdb
+Found a new outlier# 29594 at frame 2262 of omm_run_1544721520/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721520_002262.pdb
+Found a new outlier# 29623 at frame 2291 of omm_run_1544721520/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721520_002291.pdb
+Found a new outlier# 29626 at frame 2294 of omm_run_1544721520/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721520_002294.pdb
+Found a new outlier# 29627 at frame 2295 of omm_run_1544721520/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721520_002295.pdb
+Found a new outlier# 29865 at frame 2533 of omm_run_1544721520/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721520_002533.pdb
+Found a new outlier# 37560 at frame 5089 of omm_run_1544721522/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721522_005089.pdb
+Found a new outlier# 42857 at frame 35 of omm_run_1544721526/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721526_000035.pdb
+Found a new outlier# 42858 at frame 36 of omm_run_1544721526/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721526_000036.pdb
+Found a new outlier# 42859 at frame 37 of omm_run_1544721526/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721526_000037.pdb
+Found a new outlier# 42860 at frame 38 of omm_run_1544721526/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721526_000038.pdb
+Found a new outlier# 42861 at frame 39 of omm_run_1544721526/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721526_000039.pdb
+Found a new outlier# 42863 at frame 41 of omm_run_1544721526/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721526_000041.pdb
+Found a new outlier# 42866 at frame 44 of omm_run_1544721526/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721526_000044.pdb
+Found a new outlier# 42871 at frame 49 of omm_run_1544721526/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721526_000049.pdb
+Found a new outlier# 42892 at frame 70 of omm_run_1544721526/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721526_000070.pdb
+Found a new outlier# 48285 at frame 360 of omm_run_1544721528/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721528_000360.pdb
+Found a new outlier# 51347 at frame 3422 of omm_run_1544721528/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721528_003422.pdb
+Found a new outlier# 53347 at frame 313 of omm_run_1544721530/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721530_000313.pdb
+Found a new outlier# 58203 at frame 0 of omm_run_1544721532/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721532_000000.pdb
+Found a new outlier# 58213 at frame 10 of omm_run_1544721532/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721532_000010.pdb
+Found a new outlier# 58277 at frame 74 of omm_run_1544721532/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721532_000074.pdb
+Found a new outlier# 58284 at frame 81 of omm_run_1544721532/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721532_000081.pdb
+Found a new outlier# 58651 at frame 448 of omm_run_1544721532/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721532_000448.pdb
+Found a new outlier# 65237 at frame 1919 of omm_run_1544721534/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721534_001919.pdb
+Found a new outlier# 66341 at frame 3023 of omm_run_1544721534/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721534_003023.pdb
+Found a new outlier# 74238 at frame 636 of omm_run_1544721538/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721538_000636.pdb
+Found a new outlier# 74241 at frame 639 of omm_run_1544721538/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721538_000639.pdb
+Found a new outlier# 74644 at frame 1042 of omm_run_1544721538/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721538_001042.pdb
+Found a new outlier# 74736 at frame 1134 of omm_run_1544721538/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721538_001134.pdb
+Found a new outlier# 74949 at frame 1347 of omm_run_1544721538/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721538_001347.pdb
+Found a new outlier# 75536 at frame 1934 of omm_run_1544721538/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721538_001934.pdb
+Found a new outlier# 76494 at frame 2892 of omm_run_1544721538/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721538_002892.pdb
+Found a new outlier# 76630 at frame 3028 of omm_run_1544721538/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721538_003028.pdb
+Found a new outlier# 76770 at frame 3168 of omm_run_1544721538/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721538_003168.pdb
+Found a new outlier# 77211 at frame 3609 of omm_run_1544721538/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721538_003609.pdb
+Found a new outlier# 77407 at frame 3805 of omm_run_1544721538/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721538_003805.pdb
+Found a new outlier# 77562 at frame 3960 of omm_run_1544721538/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721538_003960.pdb
+Found a new outlier# 78834 at frame 46 of omm_run_1544721540/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721540_000046.pdb
+Found a new outlier# 78880 at frame 92 of omm_run_1544721540/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721540_000092.pdb
+Found a new outlier# 78884 at frame 96 of omm_run_1544721540/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721540_000096.pdb
+Found a new outlier# 78931 at frame 143 of omm_run_1544721540/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721540_000143.pdb
+Found a new outlier# 78974 at frame 186 of omm_run_1544721540/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721540_000186.pdb
+Found a new outlier# 79094 at frame 306 of omm_run_1544721540/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721540_000306.pdb
+Found a new outlier# 80259 at frame 1471 of omm_run_1544721540/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721540_001471.pdb
+Found a new outlier# 88705 at frame 253 of omm_run_1544721915/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721915_000253.pdb
+Found a new outlier# 88708 at frame 256 of omm_run_1544721915/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544721915_000256.pdb
+Found a new outlier# 103535 at frame 156 of omm_run_1544734752/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544734752_000156.pdb
+Found a new outlier# 104167 at frame 202 of omm_run_1544734756/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544734756_000202.pdb
+Found a new outlier# 106090 at frame 124 of omm_run_1544734770/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544734770_000124.pdb
+Found a new outlier# 106091 at frame 125 of omm_run_1544734770/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544734770_000125.pdb
+Found a new outlier# 106157 at frame 191 of omm_run_1544734770/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544734770_000191.pdb
+Found a new outlier# 106398 at frame 153 of omm_run_1544734772/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544734772_000153.pdb
+Found a new outlier# 106530 at frame 0 of omm_run_1544734774/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544734774_000000.pdb
+/usr/local/lib/python2.7/site-packages/MDAnalysis/coordinates/base.py:836: UserWarning: Reader has no dt information, set to 1.0 ps
+  warnings.warn("Reader has no dt information, set to 1.0 ps")
+The running job under omm_run_1544734752 has completed 293 frames.
+The running job under omm_run_1544734754 has completed 293 frames.
+The running job under omm_run_1544734756 has completed 285 frames.
+The running job under omm_run_1544734758 has completed 287 frames.
+The running job under omm_run_1544734760 has completed 287 frames.
+The running job under omm_run_1544734762 has completed 287 frames.
+The running job under omm_run_1544734764 has completed 286 frames.
+The running job under omm_run_1544734766 has completed 286 frames.
+The running job under omm_run_1544734768 has completed 283 frames.
+The running job under omm_run_1544734770 has completed 279 frames.
+The running job under omm_run_1544734772 has completed 285 frames.
+The running job under omm_run_1544734774 has completed 282 frames.
+Restarting OpenMM simulation on GPU [0, 1, 2, 3]
+Starting the simulation according the RMSD seq
+Starting simulation on the lowest RMSD outlier conformer:  omm_run_1544718172_000774.pdb
+Restarted OMM simulation on 0
+Starting simulation on the lowest RMSD outlier conformer:  omm_run_1544718172_000760.pdb
+Restarted OMM simulation on 1
+Starting simulation on random outlier conformer:  omm_run_1544721540_000306.pdb
+Restarted OMM simulation on 2
+Starting simulation on highest RMSD outlier conformer:  omm_run_1544718178_000153.pdb
+Restarted OMM simulation on 3
+Successfully find 102 new outliers.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  1
+Counting number of frames in current step.
+ Current number of total frames:  110028
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 103
+dimension = 3, eps = 0.25, number of outlier found: 22
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1786
+dimension = 4, eps = 0.25, number of outlier found: 391
+dimension = 4, eps = 0.30, number of outlier found: 125
+dimension = 4, eps = 0.35, number of outlier found: 36
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20751
+dimension = 5, eps = 0.25, number of outlier found: 5909
+dimension = 5, eps = 0.30, number of outlier found: 1428
+dimension = 5, eps = 0.35, number of outlier found: 351
+dimension = 5, eps = 0.40, number of outlier found: 75
+dimension = 5, eps = 0.45, number of outlier found: 23
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 66831
+dimension = 6, eps = 0.25, number of outlier found: 35568
+dimension = 6, eps = 0.30, number of outlier found: 14286
+dimension = 6, eps = 0.35, number of outlier found: 4730
+dimension = 6, eps = 0.40, number of outlier found: 1450
+dimension = 6, eps = 0.45, number of outlier found: 402
+dimension = 6, eps = 0.50, number of outlier found: 100
+dimension = 6, eps = 0.55, number of outlier found: 21
+
+Preparing to write new pdb files
+The running job under omm_run_1544734752 has completed 520 frames.
+The running job under omm_run_1544734754 has completed 518 frames.
+The running job under omm_run_1544734756 has completed 511 frames.
+The running job under omm_run_1544734758 has completed 510 frames.
+The running job under omm_run_1544734760 has completed 510 frames.
+The running job under omm_run_1544734762 has completed 516 frames.
+The running job under omm_run_1544734764 has completed 512 frames.
+The running job under omm_run_1544734766 has completed 514 frames.
+The running job under omm_run_1544734768 has completed 507 frames.
+The running job under omm_run_1544734770 has completed 503 frames.
+The running job under omm_run_1544734772 has completed 512 frames.
+The running job under omm_run_1544734774 has completed 508 frames.
+The running job under omm_run_1544735664 has completed 126 frames.
+The running job under omm_run_1544735666 has completed 126 frames.
+The running job under omm_run_1544735668 has completed 128 frames.
+The running job under omm_run_1544735670 has completed 128 frames.
+No GPU available
+Nothing found, next iter.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  2
+Counting number of frames in current step.
+ Current number of total frames:  113969
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 103
+dimension = 3, eps = 0.25, number of outlier found: 22
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1779
+dimension = 4, eps = 0.25, number of outlier found: 386
+dimension = 4, eps = 0.30, number of outlier found: 125
+dimension = 4, eps = 0.35, number of outlier found: 36
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20799
+dimension = 5, eps = 0.25, number of outlier found: 5874
+dimension = 5, eps = 0.30, number of outlier found: 1415
+dimension = 5, eps = 0.35, number of outlier found: 345
+dimension = 5, eps = 0.40, number of outlier found: 74
+dimension = 5, eps = 0.45, number of outlier found: 23
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 67703
+dimension = 6, eps = 0.25, number of outlier found: 35975
+dimension = 6, eps = 0.30, number of outlier found: 14467
+dimension = 6, eps = 0.35, number of outlier found: 4755
+dimension = 6, eps = 0.40, number of outlier found: 1452
+dimension = 6, eps = 0.45, number of outlier found: 404
+dimension = 6, eps = 0.50, number of outlier found: 100
+dimension = 6, eps = 0.55, number of outlier found: 21
+
+Preparing to write new pdb files
+The running job under omm_run_1544734752 has completed 770 frames.
+The running job under omm_run_1544734754 has completed 766 frames.
+The running job under omm_run_1544734756 has completed 761 frames.
+The running job under omm_run_1544734758 has completed 757 frames.
+The running job under omm_run_1544734760 has completed 756 frames.
+The running job under omm_run_1544734762 has completed 764 frames.
+The running job under omm_run_1544734764 has completed 761 frames.
+The running job under omm_run_1544734766 has completed 764 frames.
+The running job under omm_run_1544734768 has completed 758 frames.
+The running job under omm_run_1544734770 has completed 751 frames.
+The running job under omm_run_1544734772 has completed 762 frames.
+The running job under omm_run_1544734774 has completed 757 frames.
+The running job under omm_run_1544735664 has completed 341 frames.
+The running job under omm_run_1544735666 has completed 375 frames.
+The running job under omm_run_1544735668 has completed 372 frames.
+The running job under omm_run_1544735670 has completed 375 frames.
+No GPU available
+Nothing found, next iter.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  3
+Counting number of frames in current step.
+ Current number of total frames:  118060
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 103
+dimension = 3, eps = 0.25, number of outlier found: 22
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1772
+dimension = 4, eps = 0.25, number of outlier found: 386
+dimension = 4, eps = 0.30, number of outlier found: 125
+dimension = 4, eps = 0.35, number of outlier found: 36
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20865
+dimension = 5, eps = 0.25, number of outlier found: 5842
+dimension = 5, eps = 0.30, number of outlier found: 1405
+dimension = 5, eps = 0.35, number of outlier found: 342
+dimension = 5, eps = 0.40, number of outlier found: 73
+dimension = 5, eps = 0.45, number of outlier found: 23
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 68581
+dimension = 6, eps = 0.25, number of outlier found: 36331
+dimension = 6, eps = 0.30, number of outlier found: 14593
+dimension = 6, eps = 0.35, number of outlier found: 4796
+dimension = 6, eps = 0.40, number of outlier found: 1464
+dimension = 6, eps = 0.45, number of outlier found: 399
+dimension = 6, eps = 0.50, number of outlier found: 101
+dimension = 6, eps = 0.55, number of outlier found: 22
+
+Preparing to write new pdb files
+Found a new outlier# 115422 at frame 834 of omm_run_1544734774/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544734774_000834.pdb
+The running job under omm_run_1544734752 has completed 1026 frames.
+The running job under omm_run_1544734754 has completed 1023 frames.
+The running job under omm_run_1544734756 has completed 1022 frames.
+The running job under omm_run_1544734758 has completed 1012 frames.
+The running job under omm_run_1544734760 has completed 1015 frames.
+The running job under omm_run_1544734762 has completed 1024 frames.
+The running job under omm_run_1544734764 has completed 1020 frames.
+The running job under omm_run_1544734766 has completed 1024 frames.
+The running job under omm_run_1544734768 has completed 1015 frames.
+The running job under omm_run_1544734770 has completed 1007 frames.
+The running job under omm_run_1544734772 has completed 1021 frames.
+The running job under omm_run_1544734774 has completed 1015 frames.
+The running job under omm_run_1544735664 has completed 564 frames.
+The running job under omm_run_1544735666 has completed 633 frames.
+The running job under omm_run_1544735668 has completed 627 frames.
+The running job under omm_run_1544735670 has completed 633 frames.
+No GPU available
+Successfully find 1 new outliers.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  4
+Counting number of frames in current step.
+ Current number of total frames:  122337
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 103
+dimension = 3, eps = 0.25, number of outlier found: 22
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1765
+dimension = 4, eps = 0.25, number of outlier found: 386
+dimension = 4, eps = 0.30, number of outlier found: 125
+dimension = 4, eps = 0.35, number of outlier found: 36
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20831
+dimension = 5, eps = 0.25, number of outlier found: 5850
+dimension = 5, eps = 0.30, number of outlier found: 1404
+dimension = 5, eps = 0.35, number of outlier found: 341
+dimension = 5, eps = 0.40, number of outlier found: 73
+dimension = 5, eps = 0.45, number of outlier found: 23
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 68786
+dimension = 6, eps = 0.25, number of outlier found: 36337
+dimension = 6, eps = 0.30, number of outlier found: 14548
+dimension = 6, eps = 0.35, number of outlier found: 4785
+dimension = 6, eps = 0.40, number of outlier found: 1458
+dimension = 6, eps = 0.45, number of outlier found: 400
+dimension = 6, eps = 0.50, number of outlier found: 101
+dimension = 6, eps = 0.55, number of outlier found: 22
+
+Preparing to write new pdb files
+The running job under omm_run_1544734752 has completed 1290 frames.
+The running job under omm_run_1544734754 has completed 1295 frames.
+The running job under omm_run_1544734756 has completed 1293 frames.
+The running job under omm_run_1544734758 has completed 1279 frames.
+The running job under omm_run_1544734760 has completed 1286 frames.
+The running job under omm_run_1544734762 has completed 1298 frames.
+The running job under omm_run_1544734764 has completed 1290 frames.
+The running job under omm_run_1544734766 has completed 1295 frames.
+The running job under omm_run_1544734768 has completed 1280 frames.
+The running job under omm_run_1544734770 has completed 1277 frames.
+The running job under omm_run_1544734772 has completed 1292 frames.
+The running job under omm_run_1544734774 has completed 1286 frames.
+The running job under omm_run_1544735664 has completed 797 frames.
+The running job under omm_run_1544735666 has completed 901 frames.
+The running job under omm_run_1544735668 has completed 895 frames.
+The running job under omm_run_1544735670 has completed 904 frames.
+No GPU available
+Nothing found, next iter.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  5
+Counting number of frames in current step.
+ Current number of total frames:  126795
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 103
+dimension = 3, eps = 0.25, number of outlier found: 22
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1762
+dimension = 4, eps = 0.25, number of outlier found: 385
+dimension = 4, eps = 0.30, number of outlier found: 125
+dimension = 4, eps = 0.35, number of outlier found: 36
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20820
+dimension = 5, eps = 0.25, number of outlier found: 5824
+dimension = 5, eps = 0.30, number of outlier found: 1398
+dimension = 5, eps = 0.35, number of outlier found: 340
+dimension = 5, eps = 0.40, number of outlier found: 73
+dimension = 5, eps = 0.45, number of outlier found: 23
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 69398
+dimension = 6, eps = 0.25, number of outlier found: 36406
+dimension = 6, eps = 0.30, number of outlier found: 14508
+dimension = 6, eps = 0.35, number of outlier found: 4764
+dimension = 6, eps = 0.40, number of outlier found: 1457
+dimension = 6, eps = 0.45, number of outlier found: 399
+dimension = 6, eps = 0.50, number of outlier found: 100
+dimension = 6, eps = 0.55, number of outlier found: 22
+
+Preparing to write new pdb files
+The running job under omm_run_1544734752 has completed 1572 frames.
+The running job under omm_run_1544734754 has completed 1577 frames.
+The running job under omm_run_1544734756 has completed 1575 frames.
+The running job under omm_run_1544734758 has completed 1558 frames.
+The running job under omm_run_1544734760 has completed 1570 frames.
+The running job under omm_run_1544734762 has completed 1581 frames.
+The running job under omm_run_1544734764 has completed 1571 frames.
+The running job under omm_run_1544734766 has completed 1579 frames.
+The running job under omm_run_1544734768 has completed 1560 frames.
+The running job under omm_run_1544734770 has completed 1555 frames.
+The running job under omm_run_1544734772 has completed 1576 frames.
+The running job under omm_run_1544734774 has completed 1567 frames.
+The running job under omm_run_1544735664 has completed 1040 frames.
+The running job under omm_run_1544735666 has completed 1181 frames.
+The running job under omm_run_1544735668 has completed 1173 frames.
+The running job under omm_run_1544735670 has completed 1181 frames.
+No GPU available
+Nothing found, next iter.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  6
+Counting number of frames in current step.
+ Current number of total frames:  131314
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 103
+dimension = 3, eps = 0.25, number of outlier found: 22
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1765
+dimension = 4, eps = 0.25, number of outlier found: 385
+dimension = 4, eps = 0.30, number of outlier found: 125
+dimension = 4, eps = 0.35, number of outlier found: 36
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20744
+dimension = 5, eps = 0.25, number of outlier found: 5796
+dimension = 5, eps = 0.30, number of outlier found: 1397
+dimension = 5, eps = 0.35, number of outlier found: 340
+dimension = 5, eps = 0.40, number of outlier found: 73
+dimension = 5, eps = 0.45, number of outlier found: 23
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 69859
+dimension = 6, eps = 0.25, number of outlier found: 36426
+dimension = 6, eps = 0.30, number of outlier found: 14507
+dimension = 6, eps = 0.35, number of outlier found: 4758
+dimension = 6, eps = 0.40, number of outlier found: 1456
+dimension = 6, eps = 0.45, number of outlier found: 397
+dimension = 6, eps = 0.50, number of outlier found: 100
+dimension = 6, eps = 0.55, number of outlier found: 22
+
+Preparing to write new pdb files
+The running job under omm_run_1544734752 has completed 1859 frames.
+The running job under omm_run_1544734754 has completed 1859 frames.
+The running job under omm_run_1544734756 has completed 1860 frames.
+The running job under omm_run_1544734758 has completed 1842 frames.
+The running job under omm_run_1544734760 has completed 1857 frames.
+The running job under omm_run_1544734762 has completed 1866 frames.
+The running job under omm_run_1544734764 has completed 1854 frames.
+The running job under omm_run_1544734766 has completed 1868 frames.
+The running job under omm_run_1544734768 has completed 1846 frames.
+The running job under omm_run_1544734770 has completed 1838 frames.
+The running job under omm_run_1544734772 has completed 1863 frames.
+The running job under omm_run_1544734774 has completed 1850 frames.
+The running job under omm_run_1544735664 has completed 1288 frames.
+The running job under omm_run_1544735666 has completed 1465 frames.
+The running job under omm_run_1544735668 has completed 1457 frames.
+The running job under omm_run_1544735670 has completed 1463 frames.
+No GPU available
+Nothing found, next iter.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  7
+Counting number of frames in current step.
+ Current number of total frames:  136537
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 103
+dimension = 3, eps = 0.25, number of outlier found: 22
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1764
+dimension = 4, eps = 0.25, number of outlier found: 384
+dimension = 4, eps = 0.30, number of outlier found: 125
+dimension = 4, eps = 0.35, number of outlier found: 36
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20693
+dimension = 5, eps = 0.25, number of outlier found: 5772
+dimension = 5, eps = 0.30, number of outlier found: 1396
+dimension = 5, eps = 0.35, number of outlier found: 341
+dimension = 5, eps = 0.40, number of outlier found: 74
+dimension = 5, eps = 0.45, number of outlier found: 23
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 70251
+dimension = 6, eps = 0.25, number of outlier found: 36515
+dimension = 6, eps = 0.30, number of outlier found: 14537
+dimension = 6, eps = 0.35, number of outlier found: 4773
+dimension = 6, eps = 0.40, number of outlier found: 1465
+dimension = 6, eps = 0.45, number of outlier found: 402
+dimension = 6, eps = 0.50, number of outlier found: 100
+dimension = 6, eps = 0.55, number of outlier found: 23
+
+Preparing to write new pdb files
+Found a new outlier# 134525 at frame 1561 of omm_run_1544735668/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544735668_001561.pdb
+The running job under omm_run_1544734752 has completed 2192 frames.
+The running job under omm_run_1544734754 has completed 2187 frames.
+The running job under omm_run_1544734756 has completed 2190 frames.
+The running job under omm_run_1544734758 has completed 2168 frames.
+The running job under omm_run_1544734760 has completed 2187 frames.
+The running job under omm_run_1544734762 has completed 2200 frames.
+The running job under omm_run_1544734764 has completed 2183 frames.
+The running job under omm_run_1544734766 has completed 2200 frames.
+The running job under omm_run_1544734768 has completed 2176 frames.
+The running job under omm_run_1544734770 has completed 2164 frames.
+The running job under omm_run_1544734772 has completed 2194 frames.
+The running job under omm_run_1544734774 has completed 2178 frames.
+The running job under omm_run_1544735664 has completed 1573 frames.
+The running job under omm_run_1544735666 has completed 1793 frames.
+The running job under omm_run_1544735668 has completed 1783 frames.
+The running job under omm_run_1544735670 has completed 1790 frames.
+No GPU available
+Successfully find 1 new outliers.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  8
+Counting number of frames in current step.
+ Current number of total frames:  142105
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 103
+dimension = 3, eps = 0.25, number of outlier found: 22
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1754
+dimension = 4, eps = 0.25, number of outlier found: 385
+dimension = 4, eps = 0.30, number of outlier found: 125
+dimension = 4, eps = 0.35, number of outlier found: 36
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20708
+dimension = 5, eps = 0.25, number of outlier found: 5763
+dimension = 5, eps = 0.30, number of outlier found: 1395
+dimension = 5, eps = 0.35, number of outlier found: 342
+dimension = 5, eps = 0.40, number of outlier found: 74
+dimension = 5, eps = 0.45, number of outlier found: 23
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 70772
+dimension = 6, eps = 0.25, number of outlier found: 36623
+dimension = 6, eps = 0.30, number of outlier found: 14557
+dimension = 6, eps = 0.35, number of outlier found: 4789
+dimension = 6, eps = 0.40, number of outlier found: 1456
+dimension = 6, eps = 0.45, number of outlier found: 399
+dimension = 6, eps = 0.50, number of outlier found: 100
+dimension = 6, eps = 0.55, number of outlier found: 22
+
+Preparing to write new pdb files
+The running job under omm_run_1544734752 has completed 2544 frames.
+The running job under omm_run_1544734754 has completed 2536 frames.
+The running job under omm_run_1544734756 has completed 2542 frames.
+The running job under omm_run_1544734758 has completed 2516 frames.
+The running job under omm_run_1544734760 has completed 2536 frames.
+The running job under omm_run_1544734762 has completed 2557 frames.
+The running job under omm_run_1544734764 has completed 2533 frames.
+The running job under omm_run_1544734766 has completed 2554 frames.
+The running job under omm_run_1544734768 has completed 2526 frames.
+The running job under omm_run_1544734770 has completed 2512 frames.
+The running job under omm_run_1544734772 has completed 2550 frames.
+The running job under omm_run_1544734774 has completed 2529 frames.
+The running job under omm_run_1544735664 has completed 1879 frames.
+The running job under omm_run_1544735666 has completed 2140 frames.
+The running job under omm_run_1544735668 has completed 2132 frames.
+The running job under omm_run_1544735670 has completed 2140 frames.
+No GPU available
+Nothing found, next iter.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  9
+Counting number of frames in current step.
+ Current number of total frames:  148004
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 104
+dimension = 3, eps = 0.25, number of outlier found: 23
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1756
+dimension = 4, eps = 0.25, number of outlier found: 385
+dimension = 4, eps = 0.30, number of outlier found: 125
+dimension = 4, eps = 0.35, number of outlier found: 36
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20705
+dimension = 5, eps = 0.25, number of outlier found: 5748
+dimension = 5, eps = 0.30, number of outlier found: 1394
+dimension = 5, eps = 0.35, number of outlier found: 341
+dimension = 5, eps = 0.40, number of outlier found: 73
+dimension = 5, eps = 0.45, number of outlier found: 23
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 71210
+dimension = 6, eps = 0.25, number of outlier found: 36776
+dimension = 6, eps = 0.30, number of outlier found: 14544
+dimension = 6, eps = 0.35, number of outlier found: 4783
+dimension = 6, eps = 0.40, number of outlier found: 1454
+dimension = 6, eps = 0.45, number of outlier found: 399
+dimension = 6, eps = 0.50, number of outlier found: 100
+dimension = 6, eps = 0.55, number of outlier found: 22
+
+Preparing to write new pdb files
+Found a new outlier# 129361 at frame 2682 of omm_run_1544734768/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544734768_002682.pdb
+The running job under omm_run_1544734752 has completed 2919 frames.
+The running job under omm_run_1544734754 has completed 2906 frames.
+The running job under omm_run_1544734756 has completed 2916 frames.
+The running job under omm_run_1544734758 has completed 2885 frames.
+The running job under omm_run_1544734760 has completed 2907 frames.
+The running job under omm_run_1544734762 has completed 2933 frames.
+The running job under omm_run_1544734764 has completed 2904 frames.
+The running job under omm_run_1544734766 has completed 2930 frames.
+The running job under omm_run_1544734768 has completed 2898 frames.
+The running job under omm_run_1544734770 has completed 2881 frames.
+The running job under omm_run_1544734772 has completed 2923 frames.
+The running job under omm_run_1544734774 has completed 2901 frames.
+The running job under omm_run_1544735664 has completed 2204 frames.
+The running job under omm_run_1544735666 has completed 2508 frames.
+The running job under omm_run_1544735668 has completed 2499 frames.
+The running job under omm_run_1544735670 has completed 2511 frames.
+No GPU available
+Successfully find 1 new outliers.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  10
+Counting number of frames in current step.
+ Current number of total frames:  154288
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 104
+dimension = 3, eps = 0.25, number of outlier found: 23
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1756
+dimension = 4, eps = 0.25, number of outlier found: 385
+dimension = 4, eps = 0.30, number of outlier found: 124
+dimension = 4, eps = 0.35, number of outlier found: 36
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20711
+dimension = 5, eps = 0.25, number of outlier found: 5736
+dimension = 5, eps = 0.30, number of outlier found: 1384
+dimension = 5, eps = 0.35, number of outlier found: 341
+dimension = 5, eps = 0.40, number of outlier found: 73
+dimension = 5, eps = 0.45, number of outlier found: 23
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 71826
+dimension = 6, eps = 0.25, number of outlier found: 36812
+dimension = 6, eps = 0.30, number of outlier found: 14539
+dimension = 6, eps = 0.35, number of outlier found: 4759
+dimension = 6, eps = 0.40, number of outlier found: 1443
+dimension = 6, eps = 0.45, number of outlier found: 397
+dimension = 6, eps = 0.50, number of outlier found: 100
+dimension = 6, eps = 0.55, number of outlier found: 22
+
+Preparing to write new pdb files
+The running job under omm_run_1544734752 has completed 3318 frames.
+The running job under omm_run_1544734754 has completed 3302 frames.
+The running job under omm_run_1544734756 has completed 3313 frames.
+The running job under omm_run_1544734758 has completed 3279 frames.
+The running job under omm_run_1544734760 has completed 3302 frames.
+The running job under omm_run_1544734762 has completed 3333 frames.
+The running job under omm_run_1544734764 has completed 3299 frames.
+The running job under omm_run_1544734766 has completed 3330 frames.
+The running job under omm_run_1544734768 has completed 3296 frames.
+The running job under omm_run_1544734770 has completed 3272 frames.
+The running job under omm_run_1544734772 has completed 3319 frames.
+The running job under omm_run_1544734774 has completed 3295 frames.
+The running job under omm_run_1544735664 has completed 2550 frames.
+The running job under omm_run_1544735666 has completed 2902 frames.
+The running job under omm_run_1544735668 has completed 2894 frames.
+The running job under omm_run_1544735670 has completed 2905 frames.
+No GPU available
+Nothing found, next iter.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  11
+Counting number of frames in current step.
+ Current number of total frames:  160900
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 101
+dimension = 3, eps = 0.25, number of outlier found: 23
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1758
+dimension = 4, eps = 0.25, number of outlier found: 385
+dimension = 4, eps = 0.30, number of outlier found: 124
+dimension = 4, eps = 0.35, number of outlier found: 36
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20647
+dimension = 5, eps = 0.25, number of outlier found: 5727
+dimension = 5, eps = 0.30, number of outlier found: 1383
+dimension = 5, eps = 0.35, number of outlier found: 341
+dimension = 5, eps = 0.40, number of outlier found: 73
+dimension = 5, eps = 0.45, number of outlier found: 23
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 72303
+dimension = 6, eps = 0.25, number of outlier found: 36876
+dimension = 6, eps = 0.30, number of outlier found: 14516
+dimension = 6, eps = 0.35, number of outlier found: 4748
+dimension = 6, eps = 0.40, number of outlier found: 1440
+dimension = 6, eps = 0.45, number of outlier found: 393
+dimension = 6, eps = 0.50, number of outlier found: 100
+dimension = 6, eps = 0.55, number of outlier found: 22
+
+Preparing to write new pdb files
+The running job under omm_run_1544734752 has completed 3735 frames.
+The running job under omm_run_1544734754 has completed 3714 frames.
+The running job under omm_run_1544734756 has completed 3729 frames.
+The running job under omm_run_1544734758 has completed 3693 frames.
+The running job under omm_run_1544734760 has completed 3718 frames.
+The running job under omm_run_1544734762 has completed 3753 frames.
+The running job under omm_run_1544734764 has completed 3716 frames.
+The running job under omm_run_1544734766 has completed 3756 frames.
+The running job under omm_run_1544734768 has completed 3713 frames.
+The running job under omm_run_1544734770 has completed 3686 frames.
+The running job under omm_run_1544734772 has completed 3731 frames.
+The running job under omm_run_1544734774 has completed 3714 frames.
+The running job under omm_run_1544735664 has completed 2918 frames.
+The running job under omm_run_1544735666 has completed 3316 frames.
+The running job under omm_run_1544735668 has completed 3311 frames.
+The running job under omm_run_1544735670 has completed 3318 frames.
+No GPU available
+Nothing found, next iter.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  12
+Counting number of frames in current step.
+ Current number of total frames:  167665
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 101
+dimension = 3, eps = 0.25, number of outlier found: 23
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1758
+dimension = 4, eps = 0.25, number of outlier found: 385
+dimension = 4, eps = 0.30, number of outlier found: 124
+dimension = 4, eps = 0.35, number of outlier found: 36
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20634
+dimension = 5, eps = 0.25, number of outlier found: 5726
+dimension = 5, eps = 0.30, number of outlier found: 1382
+dimension = 5, eps = 0.35, number of outlier found: 341
+dimension = 5, eps = 0.40, number of outlier found: 73
+dimension = 5, eps = 0.45, number of outlier found: 23
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 72465
+dimension = 6, eps = 0.25, number of outlier found: 36896
+dimension = 6, eps = 0.30, number of outlier found: 14493
+dimension = 6, eps = 0.35, number of outlier found: 4743
+dimension = 6, eps = 0.40, number of outlier found: 1436
+dimension = 6, eps = 0.45, number of outlier found: 394
+dimension = 6, eps = 0.50, number of outlier found: 100
+dimension = 6, eps = 0.55, number of outlier found: 22
+
+Preparing to write new pdb files
+The running job under omm_run_1544734752 has completed 4158 frames.
+The running job under omm_run_1544734754 has completed 4141 frames.
+The running job under omm_run_1544734756 has completed 4157 frames.
+The running job under omm_run_1544734758 has completed 4115 frames.
+The running job under omm_run_1544734760 has completed 4142 frames.
+The running job under omm_run_1544734762 has completed 4179 frames.
+The running job under omm_run_1544734764 has completed 4144 frames.
+The running job under omm_run_1544734766 has completed 4190 frames.
+The running job under omm_run_1544734768 has completed 4141 frames.
+The running job under omm_run_1544734770 has completed 4109 frames.
+The running job under omm_run_1544734772 has completed 4158 frames.
+The running job under omm_run_1544734774 has completed 4140 frames.
+The running job under omm_run_1544735664 has completed 3298 frames.
+The running job under omm_run_1544735666 has completed 3738 frames.
+The running job under omm_run_1544735668 has completed 3732 frames.
+The running job under omm_run_1544735670 has completed 3744 frames.
+No GPU available
+Nothing found, next iter.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  13
+Counting number of frames in current step.
+ Current number of total frames:  175400
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 101
+dimension = 3, eps = 0.25, number of outlier found: 23
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1758
+dimension = 4, eps = 0.25, number of outlier found: 385
+dimension = 4, eps = 0.30, number of outlier found: 124
+dimension = 4, eps = 0.35, number of outlier found: 36
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20597
+dimension = 5, eps = 0.25, number of outlier found: 5715
+dimension = 5, eps = 0.30, number of outlier found: 1387
+dimension = 5, eps = 0.35, number of outlier found: 341
+dimension = 5, eps = 0.40, number of outlier found: 73
+dimension = 5, eps = 0.45, number of outlier found: 23
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 73115
+dimension = 6, eps = 0.25, number of outlier found: 37061
+dimension = 6, eps = 0.30, number of outlier found: 14500
+dimension = 6, eps = 0.35, number of outlier found: 4752
+dimension = 6, eps = 0.40, number of outlier found: 1436
+dimension = 6, eps = 0.45, number of outlier found: 391
+dimension = 6, eps = 0.50, number of outlier found: 100
+dimension = 6, eps = 0.55, number of outlier found: 22
+
+Preparing to write new pdb files
+The running job under omm_run_1544734752 has completed 4644 frames.
+The running job under omm_run_1544734754 has completed 4629 frames.
+The running job under omm_run_1544734756 has completed 4647 frames.
+The running job under omm_run_1544734758 has completed 4602 frames.
+The running job under omm_run_1544734760 has completed 4627 frames.
+The running job under omm_run_1544734762 has completed 4666 frames.
+The running job under omm_run_1544734764 has completed 4633 frames.
+The running job under omm_run_1544734766 has completed 4685 frames.
+The running job under omm_run_1544734768 has completed 4627 frames.
+The running job under omm_run_1544734770 has completed 4593 frames.
+The running job under omm_run_1544734772 has completed 4649 frames.
+The running job under omm_run_1544734774 has completed 4620 frames.
+The running job under omm_run_1544735664 has completed 3733 frames.
+The running job under omm_run_1544735666 has completed 4223 frames.
+The running job under omm_run_1544735668 has completed 4216 frames.
+The running job under omm_run_1544735670 has completed 4227 frames.
+No GPU available
+Nothing found, next iter.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  14
+Counting number of frames in current step.
+ Current number of total frames:  183629
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 101
+dimension = 3, eps = 0.25, number of outlier found: 23
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1756
+dimension = 4, eps = 0.25, number of outlier found: 385
+dimension = 4, eps = 0.30, number of outlier found: 124
+dimension = 4, eps = 0.35, number of outlier found: 36
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20551
+dimension = 5, eps = 0.25, number of outlier found: 5697
+dimension = 5, eps = 0.30, number of outlier found: 1380
+dimension = 5, eps = 0.35, number of outlier found: 340
+dimension = 5, eps = 0.40, number of outlier found: 73
+dimension = 5, eps = 0.45, number of outlier found: 23
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 73249
+dimension = 6, eps = 0.25, number of outlier found: 37009
+dimension = 6, eps = 0.30, number of outlier found: 14435
+dimension = 6, eps = 0.35, number of outlier found: 4726
+dimension = 6, eps = 0.40, number of outlier found: 1428
+dimension = 6, eps = 0.45, number of outlier found: 389
+dimension = 6, eps = 0.50, number of outlier found: 100
+dimension = 6, eps = 0.55, number of outlier found: 22
+
+Preparing to write new pdb files
+The running job under omm_run_1544734752 has completed 5161 frames.
+The running job under omm_run_1544734754 has completed 5148 frames.
+The running job under omm_run_1544734756 has completed 5174 frames.
+The running job under omm_run_1544734758 has completed 5118 frames.
+The running job under omm_run_1544734760 has completed 5143 frames.
+The running job under omm_run_1544734762 has completed 5189 frames.
+The running job under omm_run_1544734764 has completed 5151 frames.
+The running job under omm_run_1544734766 has completed 5214 frames.
+The running job under omm_run_1544734768 has completed 5145 frames.
+The running job under omm_run_1544734770 has completed 5110 frames.
+The running job under omm_run_1544734772 has completed 5169 frames.
+The running job under omm_run_1544734774 has completed 5128 frames.
+The running job under omm_run_1544735664 has completed 4198 frames.
+The running job under omm_run_1544735666 has completed 4741 frames.
+The running job under omm_run_1544735668 has completed 4730 frames.
+The running job under omm_run_1544735670 has completed 4731 frames.
+No GPU available
+Nothing found, next iter.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  15
+Counting number of frames in current step.
+ Current number of total frames:  192480
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 101
+dimension = 3, eps = 0.25, number of outlier found: 23
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1757
+dimension = 4, eps = 0.25, number of outlier found: 385
+dimension = 4, eps = 0.30, number of outlier found: 124
+dimension = 4, eps = 0.35, number of outlier found: 36
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20553
+dimension = 5, eps = 0.25, number of outlier found: 5696
+dimension = 5, eps = 0.30, number of outlier found: 1381
+dimension = 5, eps = 0.35, number of outlier found: 340
+dimension = 5, eps = 0.40, number of outlier found: 73
+dimension = 5, eps = 0.45, number of outlier found: 23
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 73482
+dimension = 6, eps = 0.25, number of outlier found: 36966
+dimension = 6, eps = 0.30, number of outlier found: 14391
+dimension = 6, eps = 0.35, number of outlier found: 4708
+dimension = 6, eps = 0.40, number of outlier found: 1422
+dimension = 6, eps = 0.45, number of outlier found: 387
+dimension = 6, eps = 0.50, number of outlier found: 100
+dimension = 6, eps = 0.55, number of outlier found: 22
+
+Preparing to write new pdb files
+The running job under omm_run_1544734752 has completed 5716 frames.
+The running job under omm_run_1544734754 has completed 5705 frames.
+The running job under omm_run_1544734756 has completed 5740 frames.
+The running job under omm_run_1544734758 has completed 5673 frames.
+The running job under omm_run_1544734760 has completed 5698 frames.
+The running job under omm_run_1544734762 has completed 5747 frames.
+The running job under omm_run_1544734764 has completed 5704 frames.
+The running job under omm_run_1544734766 has completed 5782 frames.
+The running job under omm_run_1544734768 has completed 5702 frames.
+The running job under omm_run_1544734770 has completed 5660 frames.
+The running job under omm_run_1544734772 has completed 5729 frames.
+The running job under omm_run_1544734774 has completed 5681 frames.
+The running job under omm_run_1544735664 has completed 4702 frames.
+The running job under omm_run_1544735666 has completed 5296 frames.
+The running job under omm_run_1544735668 has completed 5283 frames.
+The running job under omm_run_1544735670 has completed 5283 frames.
+No GPU available
+Nothing found, next iter.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  16
+Counting number of frames in current step.
+ Current number of total frames:  202046
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 101
+dimension = 3, eps = 0.25, number of outlier found: 23
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1758
+dimension = 4, eps = 0.25, number of outlier found: 385
+dimension = 4, eps = 0.30, number of outlier found: 124
+dimension = 4, eps = 0.35, number of outlier found: 36
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20568
+dimension = 5, eps = 0.25, number of outlier found: 5679
+dimension = 5, eps = 0.30, number of outlier found: 1381
+dimension = 5, eps = 0.35, number of outlier found: 342
+dimension = 5, eps = 0.40, number of outlier found: 73
+dimension = 5, eps = 0.45, number of outlier found: 23
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 74012
+dimension = 6, eps = 0.25, number of outlier found: 37071
+dimension = 6, eps = 0.30, number of outlier found: 14371
+dimension = 6, eps = 0.35, number of outlier found: 4688
+dimension = 6, eps = 0.40, number of outlier found: 1415
+dimension = 6, eps = 0.45, number of outlier found: 386
+dimension = 6, eps = 0.50, number of outlier found: 98
+dimension = 6, eps = 0.55, number of outlier found: 22
+
+Preparing to write new pdb files
+The running job under omm_run_1544734752 has completed 6322 frames.
+The running job under omm_run_1544734754 has completed 6308 frames.
+The running job under omm_run_1544734756 has completed 6348 frames.
+The running job under omm_run_1544734758 has completed 6274 frames.
+The running job under omm_run_1544734760 has completed 6304 frames.
+The running job under omm_run_1544734762 has completed 6354 frames.
+The running job under omm_run_1544734764 has completed 6305 frames.
+The running job under omm_run_1544734766 has completed 6379 frames.
+The running job under omm_run_1544734768 has completed 6308 frames.
+The running job under omm_run_1544734770 has completed 6259 frames.
+The running job under omm_run_1544734772 has completed 6330 frames.
+The running job under omm_run_1544734774 has completed 6269 frames.
+The running job under omm_run_1544735664 has completed 5248 frames.
+The running job under omm_run_1544735666 has completed 5902 frames.
+The running job under omm_run_1544735668 has completed 5884 frames.
+The running job under omm_run_1544735670 has completed 5873 frames.
+No GPU available
+Nothing found, next iter.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  17
+Counting number of frames in current step.
+ Current number of total frames:  212404
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 101
+dimension = 3, eps = 0.25, number of outlier found: 23
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1754
+dimension = 4, eps = 0.25, number of outlier found: 385
+dimension = 4, eps = 0.30, number of outlier found: 124
+dimension = 4, eps = 0.35, number of outlier found: 36
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20518
+dimension = 5, eps = 0.25, number of outlier found: 5664
+dimension = 5, eps = 0.30, number of outlier found: 1380
+dimension = 5, eps = 0.35, number of outlier found: 341
+dimension = 5, eps = 0.40, number of outlier found: 73
+dimension = 5, eps = 0.45, number of outlier found: 23
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 74320
+dimension = 6, eps = 0.25, number of outlier found: 37040
+dimension = 6, eps = 0.30, number of outlier found: 14346
+dimension = 6, eps = 0.35, number of outlier found: 4678
+dimension = 6, eps = 0.40, number of outlier found: 1414
+dimension = 6, eps = 0.45, number of outlier found: 385
+dimension = 6, eps = 0.50, number of outlier found: 98
+dimension = 6, eps = 0.55, number of outlier found: 22
+
+Preparing to write new pdb files
+The running job under omm_run_1544734752 has completed 6971 frames.
+The running job under omm_run_1544734754 has completed 6962 frames.
+The running job under omm_run_1544734756 has completed 7007 frames.
+The running job under omm_run_1544734758 has completed 6922 frames.
+The running job under omm_run_1544734760 has completed 6960 frames.
+The running job under omm_run_1544734762 has completed 7004 frames.
+The running job under omm_run_1544734764 has completed 6955 frames.
+The running job under omm_run_1544734766 has completed 7040 frames.
+The running job under omm_run_1544734768 has completed 6964 frames.
+The running job under omm_run_1544734770 has completed 6909 frames.
+The running job under omm_run_1544734772 has completed 6977 frames.
+The running job under omm_run_1544734774 has completed 6921 frames.
+The running job under omm_run_1544735664 has completed 5834 frames.
+The running job under omm_run_1544735666 has completed 6552 frames.
+The running job under omm_run_1544735668 has completed 6531 frames.
+The running job under omm_run_1544735670 has completed 6516 frames.
+No GPU available
+Nothing found, next iter.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  18
+Counting number of frames in current step.
+ Current number of total frames:  223611
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 101
+dimension = 3, eps = 0.25, number of outlier found: 23
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1755
+dimension = 4, eps = 0.25, number of outlier found: 385
+dimension = 4, eps = 0.30, number of outlier found: 124
+dimension = 4, eps = 0.35, number of outlier found: 36
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20513
+dimension = 5, eps = 0.25, number of outlier found: 5659
+dimension = 5, eps = 0.30, number of outlier found: 1382
+dimension = 5, eps = 0.35, number of outlier found: 341
+dimension = 5, eps = 0.40, number of outlier found: 74
+dimension = 5, eps = 0.45, number of outlier found: 23
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 74476
+dimension = 6, eps = 0.25, number of outlier found: 37047
+dimension = 6, eps = 0.30, number of outlier found: 14346
+dimension = 6, eps = 0.35, number of outlier found: 4670
+dimension = 6, eps = 0.40, number of outlier found: 1413
+dimension = 6, eps = 0.45, number of outlier found: 385
+dimension = 6, eps = 0.50, number of outlier found: 98
+dimension = 6, eps = 0.55, number of outlier found: 22
+
+Preparing to write new pdb files
+The running job under omm_run_1544734752 has completed 7676 frames.
+The running job under omm_run_1544734754 has completed 7668 frames.
+The running job under omm_run_1544734756 has completed 7725 frames.
+The running job under omm_run_1544734758 has completed 7621 frames.
+The running job under omm_run_1544734760 has completed 7667 frames.
+The running job under omm_run_1544734762 has completed 7705 frames.
+The running job under omm_run_1544734764 has completed 7656 frames.
+The running job under omm_run_1544734766 has completed 7753 frames.
+The running job under omm_run_1544734768 has completed 7673 frames.
+The running job under omm_run_1544734770 has completed 7614 frames.
+The running job under omm_run_1544734772 has completed 7681 frames.
+The running job under omm_run_1544734774 has completed 7623 frames.
+The running job under omm_run_1544735664 has completed 6471 frames.
+The running job under omm_run_1544735666 has completed 7253 frames.
+The running job under omm_run_1544735668 has completed 7235 frames.
+The running job under omm_run_1544735670 has completed 7211 frames.
+No GPU available
+Nothing found, next iter.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  19
+Counting number of frames in current step.
+ Current number of total frames:  235848
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 101
+dimension = 3, eps = 0.25, number of outlier found: 23
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1752
+dimension = 4, eps = 0.25, number of outlier found: 388
+dimension = 4, eps = 0.30, number of outlier found: 127
+dimension = 4, eps = 0.35, number of outlier found: 37
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20552
+dimension = 5, eps = 0.25, number of outlier found: 5646
+dimension = 5, eps = 0.30, number of outlier found: 1376
+dimension = 5, eps = 0.35, number of outlier found: 342
+dimension = 5, eps = 0.40, number of outlier found: 74
+dimension = 5, eps = 0.45, number of outlier found: 23
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 74896
+dimension = 6, eps = 0.25, number of outlier found: 37098
+dimension = 6, eps = 0.30, number of outlier found: 14340
+dimension = 6, eps = 0.35, number of outlier found: 4664
+dimension = 6, eps = 0.40, number of outlier found: 1408
+dimension = 6, eps = 0.45, number of outlier found: 385
+dimension = 6, eps = 0.50, number of outlier found: 96
+dimension = 6, eps = 0.55, number of outlier found: 22
+
+Preparing to write new pdb files
+Found a new outlier# 136746 at frame 7985 of omm_run_1544734758/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544734758_007985.pdb
+The running job under omm_run_1544734752 has completed 8435 frames.
+The running job under omm_run_1544734754 has completed 8437 frames.
+The running job under omm_run_1544734756 has completed 8510 frames.
+The running job under omm_run_1544734758 has completed 8379 frames.
+The running job under omm_run_1544734760 has completed 8434 frames.
+The running job under omm_run_1544734762 has completed 8471 frames.
+The running job under omm_run_1544734764 has completed 8421 frames.
+The running job under omm_run_1544734766 has completed 8526 frames.
+The running job under omm_run_1544734768 has completed 8453 frames.
+The running job under omm_run_1544734770 has completed 8382 frames.
+The running job under omm_run_1544734772 has completed 8460 frames.
+The running job under omm_run_1544734774 has completed 8383 frames.
+The running job under omm_run_1544735664 has completed 7175 frames.
+The running job under omm_run_1544735666 has completed 8021 frames.
+The running job under omm_run_1544735668 has completed 8010 frames.
+The running job under omm_run_1544735670 has completed 7972 frames.
+No GPU available
+Successfully find 1 new outliers.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  20
+Counting number of frames in current step.
+ Current number of total frames:  249224
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 101
+dimension = 3, eps = 0.25, number of outlier found: 23
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1769
+dimension = 4, eps = 0.25, number of outlier found: 397
+dimension = 4, eps = 0.30, number of outlier found: 129
+dimension = 4, eps = 0.35, number of outlier found: 36
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20564
+dimension = 5, eps = 0.25, number of outlier found: 5644
+dimension = 5, eps = 0.30, number of outlier found: 1378
+dimension = 5, eps = 0.35, number of outlier found: 341
+dimension = 5, eps = 0.40, number of outlier found: 74
+dimension = 5, eps = 0.45, number of outlier found: 23
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 75341
+dimension = 6, eps = 0.25, number of outlier found: 37176
+dimension = 6, eps = 0.30, number of outlier found: 14351
+dimension = 6, eps = 0.35, number of outlier found: 4664
+dimension = 6, eps = 0.40, number of outlier found: 1405
+dimension = 6, eps = 0.45, number of outlier found: 384
+dimension = 6, eps = 0.50, number of outlier found: 96
+dimension = 6, eps = 0.55, number of outlier found: 22
+
+Preparing to write new pdb files
+The running job under omm_run_1544734752 has completed 9265 frames.
+The running job under omm_run_1544734754 has completed 9280 frames.
+The running job under omm_run_1544734756 has completed 9360 frames.
+The running job under omm_run_1544734758 has completed 9212 frames.
+The running job under omm_run_1544734760 has completed 9276 frames.
+The running job under omm_run_1544734762 has completed 9307 frames.
+The running job under omm_run_1544734764 has completed 9270 frames.
+The running job under omm_run_1544734766 has completed 9380 frames.
+The running job under omm_run_1544734768 has completed 9301 frames.
+The running job under omm_run_1544734770 has completed 9223 frames.
+The running job under omm_run_1544734772 has completed 9311 frames.
+The running job under omm_run_1544734774 has completed 9210 frames.
+The running job under omm_run_1544735664 has completed 7944 frames.
+The running job under omm_run_1544735666 has completed 8856 frames.
+The running job under omm_run_1544735668 has completed 8849 frames.
+The running job under omm_run_1544735670 has completed 8801 frames.
+No GPU available
+Nothing found, next iter.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  21
+Counting number of frames in current step.
+ Current number of total frames:  266341
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 101
+dimension = 3, eps = 0.25, number of outlier found: 23
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1765
+dimension = 4, eps = 0.25, number of outlier found: 396
+dimension = 4, eps = 0.30, number of outlier found: 129
+dimension = 4, eps = 0.35, number of outlier found: 35
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20572
+dimension = 5, eps = 0.25, number of outlier found: 5637
+dimension = 5, eps = 0.30, number of outlier found: 1375
+dimension = 5, eps = 0.35, number of outlier found: 341
+dimension = 5, eps = 0.40, number of outlier found: 74
+dimension = 5, eps = 0.45, number of outlier found: 23
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 75365
+dimension = 6, eps = 0.25, number of outlier found: 37069
+dimension = 6, eps = 0.30, number of outlier found: 14306
+dimension = 6, eps = 0.35, number of outlier found: 4638
+dimension = 6, eps = 0.40, number of outlier found: 1400
+dimension = 6, eps = 0.45, number of outlier found: 381
+dimension = 6, eps = 0.50, number of outlier found: 96
+dimension = 6, eps = 0.55, number of outlier found: 22
+
+Preparing to write new pdb files
+The running job under omm_run_1544734752 has completed 10348 frames.
+Stopping running job under  omm_run_1544734752
+The running job under omm_run_1544734754 has completed 10359 frames.
+The running job under omm_run_1544734756 has completed 10441 frames.
+Stopping running job under  omm_run_1544734756
+The running job under omm_run_1544734758 has completed 10275 frames.
+The running job under omm_run_1544734760 has completed 10343 frames.
+The running job under omm_run_1544734762 has completed 10373 frames.
+The running job under omm_run_1544734764 has completed 10349 frames.
+The running job under omm_run_1544734766 has completed 10476 frames.
+The running job under omm_run_1544734768 has completed 10383 frames.
+Stopping running job under  omm_run_1544734768
+The running job under omm_run_1544734770 has completed 10294 frames.
+Stopping running job under  omm_run_1544734770
+The running job under omm_run_1544734772 has completed 10395 frames.
+Stopping running job under  omm_run_1544734772
+The running job under omm_run_1544734774 has completed 10291 frames.
+Stopping running job under  omm_run_1544734774
+The running job under omm_run_1544735664 has completed 8940 frames.
+The running job under omm_run_1544735666 has completed 9920 frames.
+The running job under omm_run_1544735668 has completed 9917 frames.
+The running job under omm_run_1544735670 has completed 9858 frames.
+Restarting OpenMM simulation on GPU [4, 6, 12, 13, 14, 15]
+Starting the simulation according the RMSD seq
+Starting simulation on the lowest RMSD outlier conformer:  omm_run_1544718174_000579.pdb
+Restarted OMM simulation on 4
+Starting simulation on the lowest RMSD outlier conformer:  omm_run_1544721520_002533.pdb
+Restarted OMM simulation on 6
+Starting simulation on random outlier conformer:  omm_run_1544721520_002291.pdb
+Restarted OMM simulation on 12
+Starting simulation on highest RMSD outlier conformer:  omm_run_1544718178_000154.pdb
+Restarted OMM simulation on 13
+Starting simulation on the lowest RMSD outlier conformer:  omm_run_1544721915_000253.pdb
+Restarted OMM simulation on 14
+Starting simulation on the lowest RMSD outlier conformer:  omm_run_1544734768_002682.pdb
+Restarted OMM simulation on 15
+Nothing found, next iter.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  22
+Counting number of frames in current step.
+ Current number of total frames:  285816
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 99
+dimension = 3, eps = 0.25, number of outlier found: 23
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1779
+dimension = 4, eps = 0.25, number of outlier found: 394
+dimension = 4, eps = 0.30, number of outlier found: 128
+dimension = 4, eps = 0.35, number of outlier found: 36
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20621
+dimension = 5, eps = 0.25, number of outlier found: 5634
+dimension = 5, eps = 0.30, number of outlier found: 1379
+dimension = 5, eps = 0.35, number of outlier found: 334
+dimension = 5, eps = 0.40, number of outlier found: 74
+dimension = 5, eps = 0.45, number of outlier found: 23
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 76374
+dimension = 6, eps = 0.25, number of outlier found: 37335
+dimension = 6, eps = 0.30, number of outlier found: 14345
+dimension = 6, eps = 0.35, number of outlier found: 4637
+dimension = 6, eps = 0.40, number of outlier found: 1402
+dimension = 6, eps = 0.45, number of outlier found: 375
+dimension = 6, eps = 0.50, number of outlier found: 93
+dimension = 6, eps = 0.55, number of outlier found: 22
+
+Preparing to write new pdb files
+Found a new outlier# 285186 at frame 22 of omm_run_1544761976/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544761976_000022.pdb
+The running job under omm_run_1544734754 has completed 11587 frames.
+The running job under omm_run_1544734758 has completed 11487 frames.
+The running job under omm_run_1544734760 has completed 11556 frames.
+The running job under omm_run_1544734762 has completed 11588 frames.
+The running job under omm_run_1544734764 has completed 11578 frames.
+The running job under omm_run_1544734766 has completed 11709 frames.
+The running job under omm_run_1544735664 has completed 10093 frames.
+The running job under omm_run_1544735666 has completed 11145 frames.
+The running job under omm_run_1544735668 has completed 11134 frames.
+Stopping running job under  omm_run_1544735668
+The running job under omm_run_1544735670 has completed 11063 frames.
+The running job under omm_run_1544761974 has completed 131 frames.
+The running job under omm_run_1544761976 has completed 131 frames.
+The running job under omm_run_1544761978 has completed 132 frames.
+The running job under omm_run_1544761982 has completed 131 frames.
+The running job under omm_run_1544761984 has completed 129 frames.
+The running job under omm_run_1544761986 has completed 129 frames.
+Restarting OpenMM simulation on GPU [2]
+Starting the simulation according the RMSD seq
+Starting simulation on random outlier conformer:  omm_run_1544734774_000000.pdb
+Restarted OMM simulation on 2
+Successfully find 1 new outliers.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  23
+Counting number of frames in current step.
+ Current number of total frames:  307807
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 102
+dimension = 3, eps = 0.25, number of outlier found: 23
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1744
+dimension = 4, eps = 0.25, number of outlier found: 398
+dimension = 4, eps = 0.30, number of outlier found: 125
+dimension = 4, eps = 0.35, number of outlier found: 30
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20666
+dimension = 5, eps = 0.25, number of outlier found: 5656
+dimension = 5, eps = 0.30, number of outlier found: 1376
+dimension = 5, eps = 0.35, number of outlier found: 334
+dimension = 5, eps = 0.40, number of outlier found: 75
+dimension = 5, eps = 0.45, number of outlier found: 24
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 76740
+dimension = 6, eps = 0.25, number of outlier found: 37534
+dimension = 6, eps = 0.30, number of outlier found: 14427
+dimension = 6, eps = 0.35, number of outlier found: 4647
+dimension = 6, eps = 0.40, number of outlier found: 1401
+dimension = 6, eps = 0.45, number of outlier found: 374
+dimension = 6, eps = 0.50, number of outlier found: 95
+dimension = 6, eps = 0.55, number of outlier found: 23
+
+Preparing to write new pdb files
+Found a new outlier# 301828 at frame 181 of omm_run_1544761978/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544761978_000181.pdb
+Found a new outlier# 301831 at frame 184 of omm_run_1544761978/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544761978_000184.pdb
+Found a new outlier# 301836 at frame 189 of omm_run_1544761978/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544761978_000189.pdb
+Found a new outlier# 301837 at frame 190 of omm_run_1544761978/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544761978_000190.pdb
+The running job under omm_run_1544734754 has completed 12978 frames.
+The running job under omm_run_1544734758 has completed 12862 frames.
+The running job under omm_run_1544734760 has completed 12928 frames.
+The running job under omm_run_1544734762 has completed 12960 frames.
+The running job under omm_run_1544734764 has completed 12968 frames.
+The running job under omm_run_1544734766 has completed 13101 frames.
+The running job under omm_run_1544735664 has completed 11398 frames.
+The running job under omm_run_1544735666 has completed 12524 frames.
+The running job under omm_run_1544735670 has completed 12430 frames.
+The running job under omm_run_1544761974 has completed 1515 frames.
+The running job under omm_run_1544761976 has completed 1509 frames.
+The running job under omm_run_1544761978 has completed 1520 frames.
+The running job under omm_run_1544761982 has completed 1514 frames.
+The running job under omm_run_1544761984 has completed 1508 frames.
+The running job under omm_run_1544761986 has completed 1491 frames.
+The running job under omm_run_1544765273 has completed 127 frames.
+No GPU available
+Successfully find 4 new outliers.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  24
+Counting number of frames in current step.
+ Current number of total frames:  333308
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 101
+dimension = 3, eps = 0.25, number of outlier found: 23
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1752
+dimension = 4, eps = 0.25, number of outlier found: 400
+dimension = 4, eps = 0.30, number of outlier found: 125
+dimension = 4, eps = 0.35, number of outlier found: 30
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20629
+dimension = 5, eps = 0.25, number of outlier found: 5647
+dimension = 5, eps = 0.30, number of outlier found: 1375
+dimension = 5, eps = 0.35, number of outlier found: 334
+dimension = 5, eps = 0.40, number of outlier found: 75
+dimension = 5, eps = 0.45, number of outlier found: 24
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 77683
+dimension = 6, eps = 0.25, number of outlier found: 37775
+dimension = 6, eps = 0.30, number of outlier found: 14485
+dimension = 6, eps = 0.35, number of outlier found: 4647
+dimension = 6, eps = 0.40, number of outlier found: 1396
+dimension = 6, eps = 0.45, number of outlier found: 372
+dimension = 6, eps = 0.50, number of outlier found: 95
+dimension = 6, eps = 0.55, number of outlier found: 23
+
+Preparing to write new pdb files
+The running job under omm_run_1544734754 has completed 14602 frames.
+The running job under omm_run_1544734758 has completed 14456 frames.
+Stopping running job under  omm_run_1544734758
+The running job under omm_run_1544734760 has completed 14519 frames.
+The running job under omm_run_1544734762 has completed 14550 frames.
+The running job under omm_run_1544734764 has completed 14584 frames.
+The running job under omm_run_1544734766 has completed 14717 frames.
+The running job under omm_run_1544735664 has completed 12902 frames.
+The running job under omm_run_1544735666 has completed 14115 frames.
+The running job under omm_run_1544735670 has completed 14017 frames.
+The running job under omm_run_1544761974 has completed 3114 frames.
+The running job under omm_run_1544761976 has completed 3102 frames.
+The running job under omm_run_1544761978 has completed 3126 frames.
+The running job under omm_run_1544761982 has completed 3115 frames.
+The running job under omm_run_1544761984 has completed 3107 frames.
+The running job under omm_run_1544761986 has completed 3082 frames.
+The running job under omm_run_1544765273 has completed 1726 frames.
+Restarting OpenMM simulation on GPU [7]
+Starting the simulation according the RMSD seq
+Starting simulation on highest RMSD outlier conformer:  omm_run_1544718178_000151.pdb
+Restarted OMM simulation on 7
+Nothing found, next iter.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  25
+Counting number of frames in current step.
+ Current number of total frames:  363571
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 101
+dimension = 3, eps = 0.25, number of outlier found: 23
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1752
+dimension = 4, eps = 0.25, number of outlier found: 402
+dimension = 4, eps = 0.30, number of outlier found: 126
+dimension = 4, eps = 0.35, number of outlier found: 31
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20604
+dimension = 5, eps = 0.25, number of outlier found: 5646
+dimension = 5, eps = 0.30, number of outlier found: 1375
+dimension = 5, eps = 0.35, number of outlier found: 333
+dimension = 5, eps = 0.40, number of outlier found: 74
+dimension = 5, eps = 0.45, number of outlier found: 24
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 78221
+dimension = 6, eps = 0.25, number of outlier found: 37908
+dimension = 6, eps = 0.30, number of outlier found: 14490
+dimension = 6, eps = 0.35, number of outlier found: 4636
+dimension = 6, eps = 0.40, number of outlier found: 1388
+dimension = 6, eps = 0.45, number of outlier found: 369
+dimension = 6, eps = 0.50, number of outlier found: 95
+dimension = 6, eps = 0.55, number of outlier found: 23
+
+Preparing to write new pdb files
+Found a new outlier# 130883 at frame 16067 of omm_run_1544734754/output.dcd
+     Written as /home/hm0/CVAE_pilot_MD/Fs-pep/outlier_pdbs/omm_run_1544734754_016067.pdb
+The running job under omm_run_1544734754 has completed 16521 frames.
+The running job under omm_run_1544734760 has completed 16406 frames.
+The running job under omm_run_1544734762 has completed 16434 frames.
+The running job under omm_run_1544734764 has completed 16493 frames.
+The running job under omm_run_1544734766 has completed 16638 frames.
+The running job under omm_run_1544735664 has completed 14687 frames.
+The running job under omm_run_1544735666 has completed 15999 frames.
+The running job under omm_run_1544735670 has completed 15897 frames.
+The running job under omm_run_1544761974 has completed 5038 frames.
+The running job under omm_run_1544761976 has completed 5008 frames.
+The running job under omm_run_1544761978 has completed 5036 frames.
+The running job under omm_run_1544761982 has completed 5011 frames.
+The running job under omm_run_1544761984 has completed 5004 frames.
+The running job under omm_run_1544761986 has completed 4960 frames.
+The running job under omm_run_1544765273 has completed 3619 frames.
+The running job under omm_run_1544773610 has completed 127 frames.
+No GPU available
+Successfully find 1 new outliers.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  26
+Counting number of frames in current step.
+ Current number of total frames:  399628
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 102
+dimension = 3, eps = 0.25, number of outlier found: 23
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1751
+dimension = 4, eps = 0.25, number of outlier found: 403
+dimension = 4, eps = 0.30, number of outlier found: 123
+dimension = 4, eps = 0.35, number of outlier found: 31
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20571
+dimension = 5, eps = 0.25, number of outlier found: 5635
+dimension = 5, eps = 0.30, number of outlier found: 1371
+dimension = 5, eps = 0.35, number of outlier found: 333
+dimension = 5, eps = 0.40, number of outlier found: 74
+dimension = 5, eps = 0.45, number of outlier found: 24
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 78704
+dimension = 6, eps = 0.25, number of outlier found: 37985
+dimension = 6, eps = 0.30, number of outlier found: 14482
+dimension = 6, eps = 0.35, number of outlier found: 4609
+dimension = 6, eps = 0.40, number of outlier found: 1384
+dimension = 6, eps = 0.45, number of outlier found: 371
+dimension = 6, eps = 0.50, number of outlier found: 94
+dimension = 6, eps = 0.55, number of outlier found: 23
+
+Preparing to write new pdb files
+The running job under omm_run_1544734754 has completed 18800 frames.
+The running job under omm_run_1544734760 has completed 18652 frames.
+The running job under omm_run_1544734762 has completed 18687 frames.
+The running job under omm_run_1544734764 has completed 18763 frames.
+The running job under omm_run_1544734766 has completed 18927 frames.
+The running job under omm_run_1544735664 has completed 16815 frames.
+The running job under omm_run_1544735666 has completed 18244 frames.
+The running job under omm_run_1544735670 has completed 18132 frames.
+The running job under omm_run_1544761974 has completed 7323 frames.
+The running job under omm_run_1544761976 has completed 7291 frames.
+The running job under omm_run_1544761978 has completed 7302 frames.
+The running job under omm_run_1544761982 has completed 7278 frames.
+The running job under omm_run_1544761984 has completed 7262 frames.
+The running job under omm_run_1544761986 has completed 7195 frames.
+The running job under omm_run_1544765273 has completed 5879 frames.
+The running job under omm_run_1544773610 has completed 2385 frames.
+No GPU available
+Nothing found, next iter.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  27
+Counting number of frames in current step.
+ Current number of total frames:  443119
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 102
+dimension = 3, eps = 0.25, number of outlier found: 23
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1750
+dimension = 4, eps = 0.25, number of outlier found: 396
+dimension = 4, eps = 0.30, number of outlier found: 123
+dimension = 4, eps = 0.35, number of outlier found: 31
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20569
+dimension = 5, eps = 0.25, number of outlier found: 5635
+dimension = 5, eps = 0.30, number of outlier found: 1367
+dimension = 5, eps = 0.35, number of outlier found: 333
+dimension = 5, eps = 0.40, number of outlier found: 74
+dimension = 5, eps = 0.45, number of outlier found: 24
+Model latent dimension:  6
+dimension = 6, eps = 0.20, number of outlier found: 79102
+dimension = 6, eps = 0.25, number of outlier found: 38044
+dimension = 6, eps = 0.30, number of outlier found: 14467
+dimension = 6, eps = 0.35, number of outlier found: 4595
+dimension = 6, eps = 0.40, number of outlier found: 1375
+dimension = 6, eps = 0.45, number of outlier found: 371
+dimension = 6, eps = 0.50, number of outlier found: 93
+dimension = 6, eps = 0.55, number of outlier found: 23
+
+Preparing to write new pdb files
+The running job under omm_run_1544734754 has completed 21559 frames.
+Stopping running job under  omm_run_1544734754
+The running job under omm_run_1544734760 has completed 21360 frames.
+The running job under omm_run_1544734762 has completed 21412 frames.
+The running job under omm_run_1544734764 has completed 21502 frames.
+The running job under omm_run_1544734766 has completed 21660 frames.
+The running job under omm_run_1544735664 has completed 19409 frames.
+The running job under omm_run_1544735666 has completed 20954 frames.
+The running job under omm_run_1544735670 has completed 20819 frames.
+The running job under omm_run_1544761974 has completed 10079 frames.
+The running job under omm_run_1544761976 has completed 10034 frames.
+Stopping running job under  omm_run_1544761976
+The running job under omm_run_1544761978 has completed 10047 frames.
+Stopping running job under  omm_run_1544761978
+The running job under omm_run_1544761982 has completed 10001 frames.
+The running job under omm_run_1544761984 has completed 9985 frames.
+The running job under omm_run_1544761986 has completed 9905 frames.
+The running job under omm_run_1544765273 has completed 8597 frames.
+The running job under omm_run_1544773610 has completed 5103 frames.
+Restarting OpenMM simulation on GPU [5, 6, 12]
+Starting the simulation according the RMSD seq
+Starting simulation on the lowest RMSD outlier conformer:  omm_run_1544718190_001082.pdb
+Restarted OMM simulation on 5
+Starting simulation on the lowest RMSD outlier conformer:  omm_run_1544721532_000448.pdb
+Restarted OMM simulation on 6
+Starting simulation on random outlier conformer:  omm_run_1544721538_003609.pdb
+Restarted OMM simulation on 12
+Nothing found, next iter.
+Waiting for 5 min for next iter.
+
+
+
+
+===================================
+Starting iteration:  28
+Counting number of frames in current step.
+ Current number of total frames:  496440
+Model latent dimension:  3
+dimension = 3, eps = 0.20, number of outlier found: 107
+dimension = 3, eps = 0.25, number of outlier found: 21
+Model latent dimension:  4
+dimension = 4, eps = 0.20, number of outlier found: 1733
+dimension = 4, eps = 0.25, number of outlier found: 397
+dimension = 4, eps = 0.30, number of outlier found: 123
+dimension = 4, eps = 0.35, number of outlier found: 30
+Model latent dimension:  5
+dimension = 5, eps = 0.20, number of outlier found: 20678
+dimension = 5, eps = 0.25, number of outlier found: 5612
+^B^B^[[5~^[[5~^[[5~dimension = 5, eps = 0.30, number of outlier found: 1319
+dimension = 5, eps = 0.35, number of outlier found: 312
+^C
+
+
+^[[A^[[B
+^Z
+[1]+  Stopped                 python cvae_md.py
