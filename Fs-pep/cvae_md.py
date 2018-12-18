@@ -49,7 +49,7 @@ time.sleep(5)
 celery_worker_log = os.path.join(log_dir, 'celery_worker_log.txt') 
 start_worker(celery_worker_log)
 # start_flower_monitor() 
-print('Waiting 10 seconds for the server to stablize.')
+print('Waiting 10 seconds for the server to stablize. \n')
 time.sleep(10)
 
 
@@ -59,10 +59,10 @@ for gpu_id in GPU_ids:
     job = omm_job(job_id=int(time.time()), gpu_id=gpu_id, top_file=top_file, pdb_file=pdb_file)
     job.start() 
     jobs.append(job) 
-    print('Started OpenMM jobs on GPU', gpu_id)
+    print(' Started OpenMM jobs on GPU', gpu_id)
     time.sleep(2)
     
-print('Waiting 2 mins for omm to write valid contact map .h5 files ')
+print('\nWaiting 2 mins for omm to write valid contact map .h5 files ')
 time.sleep(120) 
 
 
@@ -107,14 +107,14 @@ cvae_input_save.close()
 
 # CVAE
 hyper_dims = np.arange(n_cvae) + 3
-print('\n===========================================\n')
-print('\nRunning CVAE for hyper dimension:', hyper_dims) 
+print('\n===========================================')
+print('Running CVAE for hyper dimension:', hyper_dims) 
 
 for i in range(n_cvae): 
     cvae_j = cvae_job(time.time(), i, cvae_input_file, hyper_dim=hyper_dims[i]) 
     stop_jobs = jobs.get_job_from_gpu_id(i) 
     stop_jobs.stop()  
-    print('Started CVAE for hyper dimension:', hyper_dims[i])
+    print(' Started CVAE for hyper dimension:', hyper_dims[i])
     time.sleep(2)
     cvae_j.start() 
     jobs.append(cvae_j) 
