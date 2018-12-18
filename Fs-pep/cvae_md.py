@@ -137,6 +137,7 @@ make_dir_p(outliers_pdb_path)
 
 outlier_pdb_files = []
 restarted_points = []
+cvae_input_length = len(cvae_input) 
 
 
 # monitoring new outlier
@@ -167,8 +168,9 @@ while True:
     
     # Prep data fro cvae prediction
     cvae_input = cm_to_cvae(cm_data_lists)
+    iter_cave_input_length = len(cvae_input) 
 
-    if iter_record % 10 == 0: 
+    if iter_record % 100 == 0: 
         cvae_input_file = os.path.join(cvae_input_dir, 'cvae_input_{}.h5'.format(iter_record))
         cvae_input_save = h5py.File(cvae_input_file, 'w')
         cvae_input_save.create_dataset('contact_maps', data=cvae_input)
@@ -191,14 +193,8 @@ while True:
     print('\nPreparing to write new pdb files') 
     # write the pdb according the outlier indices
     traj_info = open('./scheduler_logs/openmm_log.txt', 'r').read().split()
-    
     traj_dict = dict(zip(traj_info[::2], np.array(traj_info[1::2]).astype(int)))
     
-#     outliers_pdb_path = os.path.join(work_dir, 'outlier_pdbs')
-#     make_dir_p(outliers_pdb_path)
-    
-#     outlier_pdb_files = []
-
     # Write the new outliers 
     n_outlier_iter = 0
     new_outlier_list = []
@@ -228,11 +224,8 @@ while True:
         ref_traj = mda.Universe(ref_pdb_file) 
         R = RMSD(outlier_traj, ref_traj, select='protein and name CA') 
         R.run()    
-        # Sorted the pdb entries 
-        # sorted_outlier_pdb_files = [outlier_file for _, outlier_file in sorted(zip(R.rmsd[:,2], outlier_pdb_file))] 
         # Make a dict contains outliers and their RMSD
         outlier_pdb_RMSD = dict(zip(outlier_pdb_files, R.rmsd[:,2]))
-#     print(outlier_pdb_RMSD)
 
     # Stop a simulation if len(traj) > 10k and no outlier in past 5k frames
     for job in jobs.get_running_omm_jobs(): 
@@ -245,10 +238,14 @@ while True:
             latest_outlier_pdb = max(job_outlier_frames) 
         else: 
             latest_outlier_pdb = 1e20
-        if job_n_frames >= 1e4 and job_n_frames - latest_outlier_pdb >= 5e3: 
+        if job_n_frames >= 2e4 and job_n_frames - latest_outlier_pdb >= 5e3: 
             print('Stopping running job under ', job.save_path) 
             job.stop()
             time.sleep(2) 
+
+    if iter_cave_input_length > cave_input_length * 1.6: 
+        print('\nThe OpenMM simulation generated 1.6 times of original training data, retraining the cvae models. \n') 
+        cvae_input_length = iter_cave_input_length 
 
     # Start a new openmm simulation if there's GPU available 
     if jobs.get_available_gpu(GPU_ids): 
@@ -258,7 +255,6 @@ while True:
             for gpu_id in jobs.get_available_gpu(GPU_ids): 
                 omm_pdb_files_sorted = [outlier for outlier in sorted(outlier_pdb_RMSD, key=outlier_pdb_RMSD.get) \
                         if outlier not in restarted_points] 
-#                 print(omm_pdb_files_sorted) 
                 if len(restarted_points) % 4 == 3: 
                     omm_pdb_file = omm_pdb_files_sorted[-1] 
                     print('Starting simulation on highest RMSD outlier conformer: ', omm_pdb_file[-29:]) 
@@ -268,7 +264,6 @@ while True:
                 else: 
                     omm_pdb_file = omm_pdb_files_sorted[0]
                     print('Starting simulation on the lowest RMSD outlier conformer: ', omm_pdb_file[-29:]) 
-#                 print(omm_pdb_file) 
                 job = omm_job(job_id=int(time.time()), gpu_id=gpu_id, top_file=top_file, pdb_file=omm_pdb_file)
                 restarted_points.append(omm_pdb_file) 
                 job.start()
