@@ -198,7 +198,7 @@ while True:
     new_outlier_list = []
     for outlier in outlier_list_uni: 
         traj_file, num_frame = find_frame(traj_dict, outlier) 
-        if number_frame == 0: 
+        if num_frame == 0: 
             print('Detected initial point as outlier, skipping...') 
             continue
         outlier_pdb_file = os.path.join(outliers_pdb_path, '{}_{:06d}.pdb'.format(traj_file[:18], num_frame))
