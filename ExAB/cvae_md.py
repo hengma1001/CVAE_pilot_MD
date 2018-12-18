@@ -6,7 +6,7 @@ print('============================================================== ')
 from glob import glob
 import numpy as np
 import sys, os, h5py, time, errno
-# import GPUtil, subprocess32
+import GPUtil
 import subprocess
 from sklearn.cluster import DBSCAN
 
@@ -17,7 +17,7 @@ from utils import omm_job, cvae_job
 from CVAE import CVAE
 
 n_gpus = 16
-GPU_ids = range(n_gpus) # [gpu.id for gpu in GPUtil.getGPUs()] 
+GPU_ids = [gpu.id for gpu in GPUtil.getGPUs()] 
 print('Available GPUs', GPU_ids) 
 
 os.environ["RABBITMQ_MNESIA_BASE"] = "~/.rabbit_base"
@@ -25,8 +25,8 @@ os.environ["RABBITMQ_LOG_BASE"] = "~/.rabbit_base/"
 
 # top_file = os.path.abspath('../P27-all/C1B48/C1B48.top.gz')
 # pdb_file = os.path.abspath('../P27-all/C1B48/C1B48.pdb.gz')
-top_file = None
-pdb_file = os.path.abspath('./pdb/100-fs-peptide-400K.pdb')
+top_file = os.path.abspath('./input_data/exab.top')
+pdb_file = os.path.abspath('./input_data/exab.gro')
 
 # number of cvae jobs, from hyper_dim 3 
 n_cvae = 4 
@@ -58,8 +58,8 @@ for gpu_id in GPU_ids:
     print('Started OpenMM jobs on GPU', gpu_id)
     time.sleep(2)
     
-print('Waiting 5 mins for omm to write valid contact map .h5 files ')
-time.sleep(120) 
+print('Waiting 10 mins for omm to write valid contact map .h5 files ')
+time.sleep(600) 
 
 
 # Read all the contact map .h5 file in local dir

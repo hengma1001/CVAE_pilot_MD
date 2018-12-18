@@ -23,8 +23,8 @@ print('Available GPUs', GPU_ids)
 os.environ["RABBITMQ_MNESIA_BASE"] = "~/.rabbit_base"
 os.environ["RABBITMQ_LOG_BASE"] = "~/.rabbit_base/"
 
-top_file = os.path.abspath('../P27-all/C1B48/C1B48.top.gz')
-pdb_file = os.path.abspath('../P27-all/C1B48/C1B48.pdb.gz')
+top_file = os.path.abspath('./P27-all/C1B48/C1B48.top.gz')
+pdb_file = os.path.abspath('./P27-all/C1B48/C1B48.pdb.gz')
 
 # number of cvae jobs, from hyper_dim 3 
 n_cvae = 2 
