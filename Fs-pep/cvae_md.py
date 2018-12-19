@@ -88,6 +88,7 @@ print('Ready for CAVE with total number of frames:', frame_number(cm_data_lists)
 # Compress all .h5 files into one in cvae format 
 cvae_input = cm_to_cvae(cm_data_lists) 
 train_data_length = [cm_data.shape[1] for cm_data in cm_data_lists]
+cvae_data_length = len(cvae_input)
 
 # Write the traj info 
 omm_log = os.path.join(log_dir, 'openmm_log.txt') 
@@ -166,7 +167,7 @@ while True:
     
     # Prep data fro cvae prediction
     cvae_input = cm_to_cvae(cm_data_lists)
-    iter_cave_input_length = len(cvae_input) 
+    iter_cvae_data_length = len(cvae_input) 
 
     if iter_record % 100 == 0: 
         cvae_input_file = os.path.join(cvae_input_dir, 'cvae_input_{}.h5'.format(iter_record))
@@ -202,7 +203,7 @@ while True:
             print('Detected initial point as outlier, skipping...') 
             continue
         outlier_pdb_file = os.path.join(outliers_pdb_path, '{}_{:06d}.pdb'.format(traj_file[:18], num_frame))
-        new_outlier_list.append(outlier_pdb_path) 
+        new_outlier_list.append(outlier_pdb_file) 
         if outlier_pdb_file not in outlier_pdb_files: 
             print('Found a new outlier# {} at frame {} of {}'.format(outlier, num_frame, traj_file))
             outlier_pdb = write_pdb_frame(traj_file, pdb_file, num_frame, outlier_pdb_file) 
@@ -241,9 +242,9 @@ while True:
             job.stop()
             time.sleep(2) 
 
-    if iter_cave_input_length > cave_input_length * 1.6: 
+    if iter_cvae_data_length > float(cvae_data_length) * 1.6: 
         print('\nThe OpenMM simulation generated 1.6 times of original training data, retraining the cvae models. \n') 
-        cvae_input_length = iter_cave_input_length 
+        cvae_data_length = iter_cvae_data_length 
 
     # Start a new openmm simulation if there's GPU available 
     if jobs.get_available_gpu(GPU_ids): 
