@@ -202,7 +202,7 @@ while True:
             print('Detected initial point as outlier, skipping...') 
             continue
         outlier_pdb_file = os.path.join(outliers_pdb_path, '{}_{:06d}.pdb'.format(traj_file[:18], num_frame))
-        new_outlier_list.append(outlier_pdb_path) 
+        new_outlier_list.append(outlier_pdb_file) 
         if outlier_pdb_file not in outlier_pdb_files: 
             print('Found a new outlier# {} at frame {} of {}'.format(outlier, num_frame, traj_file))
             outlier_pdb = write_pdb_frame(traj_file, pdb_file, num_frame, outlier_pdb_file) 

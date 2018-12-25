@@ -1,2 +1,12 @@
 WARNING: Removing trailing slash from RABBITMQ_LOG_BASE
-/usr/local/lib/erlang/erts-10.0/bin/beam.smp: error while loading shared libraries: libtinfo.so.6: cannot open shared object file: No such file or directory
+
+  ##  ##
+  ##  ##      RabbitMQ 3.7.9. Copyright (C) 2007-2018 Pivotal Software, Inc.
+  ##########  Licensed under the MPL.  See http://www.rabbitmq.com/
+  ######  ##
+  ##########  Logs: /home/hm0/.rabbit_base/rabbit@dgx2-A.log
+                    /home/hm0/.rabbit_base/rabbit@dgx2-A_upgrade.log
+
+              Starting broker...
+ completed with 0 plugins.
+Gracefully halting Erlang VM

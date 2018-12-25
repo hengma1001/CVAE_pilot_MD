@@ -1,42 +1,43 @@
 Using TensorFlow backend.
-[2018-11-27 14:53:32,186: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [Errno 111] Connection refused.
+[2018-12-25 03:10:17,201: WARNING/MainProcess] consumer: Connection to broker lost. Trying to re-establish the connection...
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/celery/worker/consumer/consumer.py", line 317, in start
+    blueprint.start(self)
+  File "/usr/local/lib/python2.7/site-packages/celery/bootsteps.py", line 119, in start
+    step.start(parent)
+  File "/usr/local/lib/python2.7/site-packages/celery/worker/consumer/consumer.py", line 593, in start
+    c.loop(*c.loop_args())
+  File "/usr/local/lib/python2.7/site-packages/celery/worker/loops.py", line 91, in asynloop
+    next(loop)
+  File "/usr/local/lib/python2.7/site-packages/kombu/asynchronous/hub.py", line 354, in create_loop
+    cb(*cbargs)
+  File "/usr/local/lib/python2.7/site-packages/kombu/transport/base.py", line 236, in on_readable
+    reader(loop)
+  File "/usr/local/lib/python2.7/site-packages/kombu/transport/base.py", line 218, in _read
+    drain_events(timeout=0)
+  File "/usr/local/lib/python2.7/site-packages/amqp/connection.py", line 491, in drain_events
+    while not self.blocking_read(timeout):
+  File "/usr/local/lib/python2.7/site-packages/amqp/connection.py", line 497, in blocking_read
+    return self.on_inbound_frame(frame)
+  File "/usr/local/lib/python2.7/site-packages/amqp/method_framing.py", line 55, in on_frame
+    callback(channel, method_sig, buf, None)
+  File "/usr/local/lib/python2.7/site-packages/amqp/connection.py", line 501, in on_inbound_method
+    method_sig, payload, content,
+  File "/usr/local/lib/python2.7/site-packages/amqp/abstract_channel.py", line 128, in dispatch_method
+    listener(*args)
+  File "/usr/local/lib/python2.7/site-packages/amqp/connection.py", line 621, in _on_close
+    self._x_close_ok()
+  File "/usr/local/lib/python2.7/site-packages/amqp/connection.py", line 636, in _x_close_ok
+    self.send_method(spec.Connection.CloseOk, callback=self._on_close_ok)
+  File "/usr/local/lib/python2.7/site-packages/amqp/abstract_channel.py", line 50, in send_method
+    conn.frame_writer(1, self.channel_id, sig, args, content)
+  File "/usr/local/lib/python2.7/site-packages/amqp/method_framing.py", line 166, in write_frame
+    write(view[:offset])
+  File "/usr/local/lib/python2.7/site-packages/amqp/transport.py", line 275, in write
+    self._write(s)
+  File "/usr/local/lib/python2.7/socket.py", line 228, in meth
+    return getattr(self._sock,name)(*args)
+error: [Errno 104] Connection reset by peer
+[2018-12-25 03:10:17,217: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [Errno 111] Connection refused.
 Trying again in 2.00 seconds...
-
-[2018-11-27 14:53:34,192: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [Errno 111] Connection refused.
-Trying again in 4.00 seconds...
-
-[2018-11-27 14:53:38,201: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [Errno 111] Connection refused.
-Trying again in 6.00 seconds...
-
-[2018-11-27 14:53:44,212: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [Errno 111] Connection refused.
-Trying again in 8.00 seconds...
-
-[2018-11-27 14:53:52,225: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [Errno 111] Connection refused.
-Trying again in 10.00 seconds...
-
-[2018-11-27 14:54:02,240: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [Errno 111] Connection refused.
-Trying again in 12.00 seconds...
-
-[2018-11-27 14:54:14,257: ERROR/MainProcess] consumer: Cannot connect to amqp://guest:**@127.0.0.1:5672//: [Errno 111] Connection refused.
-Trying again in 14.00 seconds...
-
-
-worker: Hitting Ctrl+C again will terminate all running tasks!
-
-worker: Warm shutdown (MainProcess)
- 
- -------------- celery@dgx2-A v4.2.1 (windowlicker)
----- **** ----- 
---- * ***  * -- Linux-4.15.0-38-generic-x86_64-with-debian-stretch-sid 2018-11-27 14:53:23
--- * - **** --- 
-- ** ---------- [config]
-- ** ---------- .> app:         tasks:0x7f7289da5f10
-- ** ---------- .> transport:   amqp://guest:**@localhost:5672//
-- ** ---------- .> results:     rpc://
-- *** --- * --- .> concurrency: 96 (prefork)
--- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
---- ***** ----- 
- -------------- [queues]
-                .> celery           exchange=celery(direct) key=celery
-                
 
