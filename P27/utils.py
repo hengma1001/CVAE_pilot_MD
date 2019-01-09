@@ -300,6 +300,7 @@ def outliers_from_cvae(model_weight, cvae_input, hyper_dim=3, eps=0.35):
     db_label = db.labels_
     outlier_list = np.where(db_label == -1)
     K.clear_session()
+    del cvae
     return outlier_list
 
 def predict_from_cvae(model_weight, cvae_input, hyper_dim=3): 

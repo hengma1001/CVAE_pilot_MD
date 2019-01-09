@@ -30,6 +30,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 top_file = os.path.abspath('./P27-all/C1B48/C1B48.top.gz')
 pdb_file = os.path.abspath('./P27-all/C1B48/C1B48.pdb.gz')
+ref_pdb_file = None
 # top_file = None
 # pdb_file = os.path.abspath('./pdb/100-fs-peptide-400K.pdb')
 # ref_pdb_file = os.path.abspath('./pdb/fs-peptide.pdb')
