@@ -2,9 +2,7 @@
 
 
 
-The program is designed to run MD simulations that are monitored by CVAE, which would also access
-
-the MD simulations conditions and decide when to stop or restart an OpenMM simulation.
+The program is designed to run autonomous MD simulations, monitored by CVAE, which would also access the MD simulations conditions and decide when to stop or restart an OpenMM simulation.
 
 
 
