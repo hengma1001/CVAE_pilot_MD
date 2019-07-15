@@ -113,8 +113,8 @@ print('Running CVAE for hyper dimension:', hyper_dims)
 
 for i in range(n_cvae): 
     cvae_j = cvae_job(time.time(), i, cvae_input_file, hyper_dim=hyper_dims[i]) 
-    stop_jobs = jobs.get_job_from_gpu_id(i) 
-    stop_jobs.stop()  
+#     stop_jobs = jobs.get_job_from_gpu_id(i) 
+#     stop_jobs.stop()  
     print(' Started CVAE for hyper dimension:', hyper_dims[i])
     time.sleep(2)
     cvae_j.start() 
@@ -141,7 +141,7 @@ cvae_input_length = len(cvae_input)
 
 # monitoring new outlier
 iter_record = 0 
-while True: 
+while iter_record < 100: 
     print('\n\n===================================')
     print('Starting iteration: ', iter_record)
 
@@ -169,7 +169,7 @@ while True:
     cvae_input = cm_to_cvae(cm_data_lists)
     iter_cvae_data_length = len(cvae_input) 
 
-    if iter_record % 100 == 0: 
+    if iter_record % 20 == 0: 
         cvae_input_file = os.path.join(cvae_input_dir, 'cvae_input_{}.h5'.format(iter_record))
         cvae_input_save = h5py.File(cvae_input_file, 'w')
         cvae_input_save.create_dataset('contact_maps', data=cvae_input)

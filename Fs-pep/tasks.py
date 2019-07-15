@@ -13,7 +13,7 @@ app = Celery('tasks', broker='pyamqp://guest@localhost//', backend='rpc://', bro
 app.conf.update(
     broker_pool_limit = 0, 
     timezone='US/Eastern',
-    enable_utc=True,
+    # enable_utc=True,
 )
 
 @app.task

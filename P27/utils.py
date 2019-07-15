@@ -1,4 +1,4 @@
-from tasks import run_omm_with_celery, run_cvae_with_celery
+from tasks import run_omm_with_celery, run_omm_with_celery_fs_pep, run_cvae_with_celery
 from celery.bin import worker
 import numpy as np
 import threading, h5py
@@ -27,7 +27,7 @@ def start_rabbit(rabbitmq_log):
     
     """
     log = open(rabbitmq_log, 'w')
-    subprocess.Popen('rabbitmq-server', stdout=log, stderr=log) 
+    subprocess.Popen('rabbitmq-server &'.split(' '), stdout=log, stderr=log) 
 
 def start_worker(celery_worker_log): 
     """
@@ -129,7 +129,10 @@ class omm_job(object):
         self.gpu_id = gpu_id
         self.top_file = top_file
         self.pdb_file = pdb_file 
-        self.check_point = None
+        self.check_point = None 
+        self.type = 'omm'
+        self.state = 'RECEIVED'
+        self.save_path = 'omm_run_%d' % job_id
         self.job = None 
         
     def start(self): 
@@ -137,9 +140,15 @@ class omm_job(object):
         A function to start the job and store the `class :: celery.result.AsyncResult` 
         in the omm_job.job 
         """
-        sim_job = run_omm_with_celery.delay(self.job_id, self.gpu_id, 
-                                       self.top_file, self.pdb_file, 
-                                       self.check_point) 
+        if self.top_file: 
+            sim_job = run_omm_with_celery.delay(self.job_id, self.gpu_id, 
+                                                self.top_file, self.pdb_file,
+                                                self.check_point) 
+        else: 
+            sim_job = run_omm_with_celery_fs_pep.delay(self.job_id, self.gpu_id, self.pdb_file, 
+                                                 self.check_point) 
+        
+        self.state = 'RUNNING'
         self.job = sim_job
     
     def stop(self): 
@@ -147,6 +156,7 @@ class omm_job(object):
         A function to stop the job and return the available gpu_id 
         """
         if self.job: 
+            self.state = 'STOPPED'
             self.job.revoke(terminate=True) 
         else: 
             warnings.warn('Attempt to stop a job, which is not running. \n')
@@ -175,7 +185,10 @@ class cvae_job(object):
         self.job_id = job_id
         self.gpu_id = gpu_id
         self.cvae_input = cvae_input
-        self.hyper_dim = hyper_dim
+        self.hyper_dim = hyper_dim 
+        self.type = 'cvae'
+        self.state = 'RECEIVED'
+        self.model_weight = os.path.join("cvae_model_%d_%d" % (hyper_dim, int(job_id)), 'cvae_weight.h5')
         self.job = None 
         
     def start(self): 
@@ -185,6 +198,7 @@ class cvae_job(object):
         """
         sim_job = run_cvae_with_celery.delay(self.job_id, self.gpu_id, 
                                              self.cvae_input, hyper_dim=self.hyper_dim)
+        self.state = 'RUNNING' 
         self.job = sim_job 
         
     def cave_model(self): 
@@ -196,18 +210,63 @@ class cvae_job(object):
         A function to stop the job and return the available gpu_id 
         """
         if self.job: 
+            self.state = 'STOPPED' 
             self.job.revoke(terminate=True) 
         else: 
             warnings.warn('Attempt to stop a job, which is not running. \n')
 
+            
+class job_list(list): 
+    """
+    This create a list that allows to easily tracking the status of Celery jobs
+    """
+    def __init__(self): 
+        pass
+    
+    def get_running_jobs(self): 
+        running_list = []
+        for job in self: 
+            if job.job:
+                if job.state == u'RUNNING':  
+                    running_list.append(job)
+        return running_list 
+    
+    def get_job_from_gpu_id(self, gpu_id): 
+        for job in self.get_running_jobs(): 
+            if job.gpu_id == gpu_id: 
+                return job 
+            
+    def get_omm_jobs(self): 
+        omm_list = [job for job in self if job.type == 'omm']
+        return omm_list 
+    
+    def get_cvae_jobs(self): 
+        cvae_list = [job for job in self if job.type == 'cvae']
+        return cvae_list 
+    
+    def get_available_gpu(self, gpu_list): 
+        avail_gpu = gpu_list[:]
+        for job in self.get_running_jobs():
+            avail_gpu.remove(job.gpu_id)
+        return avail_gpu 
+    
+    def get_running_omm_jobs(self): 
+        running_omm_list = [job for job in self.get_running_jobs() if job.type == 'omm'] 
+        return running_omm_list  
+    
+    def get_finished_cave_jobs(self): 
+        finished_cvae_list = [job for job in self.get_cvae_jobs() if job.job.status == u'SUCCESS']
+        return finished_cvae_list
+    
+    
 def stamp_to_time(stamp): 
     import datetime
-    datetime.datetime.fromtimestamp(stamp).strftime('%Y-%m-%d %H:%M:%S') 
+    return datetime.datetime.fromtimestamp(stamp).strftime('%Y-%m-%d %H:%M:%S') 
     
 def find_frame(traj_dict, frame_number=0): 
     local_frame = frame_number
-    for key in traj_dict: 
-        if local_frame - int(traj_dict[key]) <= 0: 
+    for key in sorted(traj_dict.keys()): 
+        if local_frame - int(traj_dict[key]) < 0: 
             dir_name = os.path.dirname(key) 
             traj_file = os.path.join(dir_name, 'output.dcd')             
             return traj_file, local_frame
@@ -237,8 +296,17 @@ def outliers_from_cvae(model_weight, cvae_input, hyper_dim=3, eps=0.35):
     cvae = CVAE(cvae_input.shape[1:], hyper_dim) 
     cvae.model.load_weights(model_weight)
     cm_predict = cvae.return_embeddings(cvae_input) 
-    db = DBSCAN(eps=0.35, min_samples=10).fit(cm_predict)
+    db = DBSCAN(eps=eps, min_samples=10).fit(cm_predict)
     db_label = db.labels_
-    outlier_list = np.array(np.where(db_label == -1)) 
+    outlier_list = np.where(db_label == -1)
     K.clear_session()
+    del cvae
     return outlier_list
+
+def predict_from_cvae(model_weight, cvae_input, hyper_dim=3): 
+    os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
+    os.environ["CUDA_VISIBLE_DEVICES"]=str(0)  
+    cvae = CVAE(cvae_input.shape[1:], hyper_dim) 
+    cvae.model.load_weights(model_weight)
+    cm_predict = cvae.return_embeddings(cvae_input) 
+    return cm_predict

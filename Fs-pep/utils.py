@@ -292,7 +292,7 @@ def make_dir_p(path_name):
 
 def outliers_from_cvae(model_weight, cvae_input, hyper_dim=3, eps=0.35): 
     os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
-    os.environ["CUDA_VISIBLE_DEVICES"]=str(0)  
+    os.environ["CUDA_VISIBLE_DEVICES"]=''# str(0)  
     cvae = CVAE(cvae_input.shape[1:], hyper_dim) 
     cvae.model.load_weights(model_weight)
     cm_predict = cvae.return_embeddings(cvae_input) 
