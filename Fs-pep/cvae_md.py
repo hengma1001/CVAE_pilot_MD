@@ -13,7 +13,7 @@ import MDAnalysis as mda
 from  MDAnalysis.analysis.rms import RMSD
 
 from utils import start_rabbit, start_worker, start_flower_monitor, read_h5py_file, cm_to_cvae, job_on_gpu
-from utils import find_frame, write_pdb_frame, make_dir_p, job_list, outliers_from_cvae
+from utils import find_frame, write_pdb_frame, make_dir_p, job_list, outliers_from_latent, predict_from_cvae
 from utils import omm_job, cvae_job 
 
 from CVAE import CVAE
@@ -176,16 +176,28 @@ while iter_record < 100:
         cvae_input_save.close() 
 
     outlier_list = []
+    if 'eps_record' not in locals() and 'eps_record' not in globals(): 
+        eps_record = {} 
     for model_weight in model_weights: 
-        print('Model latent dimension: ', int(model_weight[11]))
-        for eps in np.arange(0.20, 2.0, 0.05): 
-            outliers = np.squeeze(outliers_from_cvae(model_weight, cvae_input, hyper_dim=int(model_weight[11]), eps=eps))
+        dim =  int(model_weight[11]) 
+        print('Model latent dimension: ', dim) 
+        cm_predict = predict_from_cvae(model_weight, cvae_input, hyper_dim=dim) 
+        if model_weight in eps_record.keys(): 
+            eps = eps_record[model_weight] 
+        else: 
+            eps = 0.20 
+
+        while True: 
+            outliers = np.squeeze(outliers_from_latent(cm_predict, eps=eps))
             n_outlier = len(outliers)
             print('dimension = {0}, eps = {1:.2f}, number of outlier found: {2}'.format(
-                model_weight[11], eps, n_outlier))
+                dim, eps, n_outlier))
             if n_outlier <= 50: 
+                eps_record[model_weight] = eps 
                 outlier_list.append(outliers)
                 break
+            else: 
+                eps += 0.05
     
     outlier_list_uni, outlier_count = np.unique(np.hstack(outlier_list), return_counts=True) 
     

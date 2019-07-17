@@ -308,4 +308,12 @@ def predict_from_cvae(model_weight, cvae_input, hyper_dim=3):
     cvae = CVAE(cvae_input.shape[1:], hyper_dim) 
     cvae.model.load_weights(model_weight)
     cm_predict = cvae.return_embeddings(cvae_input) 
+    del cvae 
+    K.clear_session() 
     return cm_predict
+
+def outliers_from_latent(cm_predict, eps=0.35):
+    db = DBSCAN(eps=eps, min_samples=10).fit(cm_predict)
+    db_label = db.labels_
+    outlier_list = np.where(db_label == -1)
+    return outlier_list
