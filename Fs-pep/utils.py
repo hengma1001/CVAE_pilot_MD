@@ -1,4 +1,4 @@
-from tasks import run_omm_with_celery, run_omm_with_celery_fs_pep, run_cvae_with_celery
+from tasks import run_omm_with_celery, run_omm_with_celery_fs_pep, run_cvae_with_celery, run_omm_with_celery_implicit
 from celery.bin import worker
 import numpy as np
 import threading, h5py
@@ -124,12 +124,13 @@ class omm_job(object):
         The location of input coordinate file for OpenMM 
         
     """
-    def __init__(self, job_id=0, gpu_id=0, top_file=None, pdb_file=None, check_point=None): 
+    def __init__(self, job_id=0, gpu_id=0, top_file=None, pdb_file=None, check_point=None, implicit_water=False): 
         self.job_id = job_id
         self.gpu_id = gpu_id
         self.top_file = top_file
         self.pdb_file = pdb_file 
-        self.check_point = None 
+        self.check_point = check_point
+        self.implicit_water = implicit_water
         self.type = 'omm'
         self.state = 'RECEIVED'
         self.save_path = 'omm_run_%d' % job_id
@@ -140,7 +141,12 @@ class omm_job(object):
         A function to start the job and store the `class :: celery.result.AsyncResult` 
         in the omm_job.job 
         """
-        if self.top_file: 
+        if self.implicit_water: 
+            sim_job = run_omm_with_celery_implicit.delay(self.job_id, self.gpu_id,
+                                                        self.top_file, self.pdb_file,
+                                                        self.check_point)
+            print('utils', self.job_id, self.gpu_id, self.top_file, self.pdb_file, self.check_point) 
+        elif self.top_file: 
             sim_job = run_omm_with_celery.delay(self.job_id, self.gpu_id, 
                                                 self.top_file, self.pdb_file,
                                                 self.check_point) 
@@ -278,6 +284,7 @@ def find_frame(traj_dict, frame_number=0):
 def write_pdb_frame(traj_file, pdb_file, frame_number, output_pdb): 
     mda_traj = mda.Universe(pdb_file, traj_file)
     mda_traj.trajectory[frame_number] 
+    mda_traj.atoms.translate(-mda_traj.atoms.center_of_mass()) 
     PDB = mda.Writer(output_pdb)
     PDB.write(mda_traj.atoms)     
     return output_pdb
@@ -292,7 +299,7 @@ def make_dir_p(path_name):
 
 def outliers_from_cvae(model_weight, cvae_input, hyper_dim=3, eps=0.35): 
     os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
-    os.environ["CUDA_VISIBLE_DEVICES"]=''# str(0)  
+    os.environ["CUDA_VISIBLE_DEVICES"]=str(0)  
     cvae = CVAE(cvae_input.shape[1:], hyper_dim) 
     cvae.model.load_weights(model_weight)
     cm_predict = cvae.return_embeddings(cvae_input) 
@@ -300,6 +307,7 @@ def outliers_from_cvae(model_weight, cvae_input, hyper_dim=3, eps=0.35):
     db_label = db.labels_
     outlier_list = np.where(db_label == -1)
     K.clear_session()
+    del cvae
     return outlier_list
 
 def predict_from_cvae(model_weight, cvae_input, hyper_dim=3): 
@@ -309,11 +317,11 @@ def predict_from_cvae(model_weight, cvae_input, hyper_dim=3):
     cvae.model.load_weights(model_weight)
     cm_predict = cvae.return_embeddings(cvae_input) 
     del cvae 
-    K.clear_session() 
+    K.clear_session()
     return cm_predict
 
 def outliers_from_latent(cm_predict, eps=0.35):
-    db = DBSCAN(eps=eps, min_samples=10).fit(cm_predict)
-    db_label = db.labels_
-    outlier_list = np.where(db_label == -1)
+    db = DBSCAN(eps=eps, min_samples=10).fit(cm_predict)        
+    db_label = db.labels_            
+    outlier_list = np.where(db_label == -1)                
     return outlier_list

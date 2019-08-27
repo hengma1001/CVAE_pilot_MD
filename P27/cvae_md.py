@@ -239,7 +239,7 @@ while iter_record < 100:
         # Make a dict contains outliers and their RMSD
         outlier_pdb_RMSD = dict(zip(outlier_pdb_files, R.rmsd[:,2]))
 
-    # Stop a simulation if len(traj) > 10k and no outlier in past 5k frames
+    # Stop a simulation if len(traj) > 10k and no outlier in past 2.5k frames
     for job in jobs.get_running_omm_jobs(): 
         job_h5 = os.path.join(job.save_path, 'output_cm.h5') 
         assert (job_h5 in cm_files)
@@ -250,7 +250,7 @@ while iter_record < 100:
             latest_outlier_pdb = max(job_outlier_frames) 
         else: 
             latest_outlier_pdb = 1e20
-        if job_n_frames >= 2e4 and job_n_frames - latest_outlier_pdb >= 5e3: 
+        if job_n_frames >= 10000 and job_n_frames - latest_outlier_pdb >= 2500: 
             print('Stopping running job under ', job.save_path) 
             job.stop()
             time.sleep(2) 
